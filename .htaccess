@@ -1,0 +1,19 @@
+# -- under construction code --
+#Options +FollowSymlinks
+#RewriteEngine on
+#RewriteCond %{REMOTE_ADDR} !^123.45.67.89$
+#RewriteCond %{REQUEST_URI} !construction.html
+#RewriteCond %{REQUEST_URI} !\.(jpe?g?|png|gif) [NC]
+#RewriteRule ^(.*)$ /800benaa/construction.html [R=302,L]
+#--- remove above set of codes once site us up ---
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /800benaa
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}/index.html !-f
+RewriteCond %{REQUEST_FILENAME}/index.php !-f
+RewriteRule . index.php [L]
+</IfModule>
+        # -- concrete5 urls end --
+
