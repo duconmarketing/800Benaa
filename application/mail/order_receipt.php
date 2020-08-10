@@ -23,7 +23,7 @@ ob_start();
     <head>
 
     </head>
-    <body>
+    <body style="width: 70%;alignment: center;">
         <?php $header = trim(\Config::get('community_store.receiptHeader')); ?>
 
         <?php
@@ -51,9 +51,9 @@ ob_start();
                 </td>
             </tr>
             <tr>
-                <td style="font-size: 18px;width: 100%;" colspan="2">
+                <td style="width: 100%;" colspan="2">
                     <p></p>
-                    <p style="margin-top: 30px;">Hi <b><?=$order->getAttribute("billing_first_name") ?></b>,</p>
+                    <p style="margin-top: 30px;font-size: 18px;">Hi <b><?=$order->getAttribute("billing_first_name") ?></b>,</p>
                     <p>
                         Thank you for placing order on 800Benaa, Please find your order details below. We will contact you soon for delivery.
                     </p>
@@ -346,12 +346,14 @@ ob_start();
         $paid = $order->getPaid();
         $cancelled = $order->getCancelled();
         $status = '';
-
+        $pmid = $order->getPaymentMethodID();
         if ($cancelled) {
             echo '<br /><strong>' . t('Cancelled') . '</strong>';
         } else {
             if ($refunded) {
                 $status = t('Refunded');
+            } elseif ($pmid==5){
+                 $status = t('Unpaid');
             } elseif ($paid) {
                 $status = t('Paid') . ' - ' . $dh->formatDateTime($paid);
             } elseif ($order->getTotal() > 0) {
@@ -363,12 +365,21 @@ ob_start();
         <?php if ($status) { ?>
             <strong><?= t("Payment Status") ?>:</strong> <?= $status; ?>
             <br>
+
             <?php
             $transactionReference = $order->getTransactionReference();
             if ($transactionReference) {
                 ?>
                 <strong><?= t("Transaction Reference") ?>: </strong><?= $transactionReference ?>
+
             <?php } ?>
+            <?php
+            if($pmid==5){
+                ?>
+                <p style="color: #ff0000;"> <?= t("*Please note that the Total Price will change according to the number of Credit days*")?></p>
+                <?php
+            }
+            ?>
                 
         <?php } ?>
     </p>

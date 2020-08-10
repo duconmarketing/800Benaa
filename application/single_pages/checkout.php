@@ -107,6 +107,7 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                             </div>
 
                             <div id="store-checkout-form-group-other-attributes" class="store-checkout-form-group <?= isset($paymentErrors) ? 'store-checkout-form-group-complete' : '';?>" style="display:none;">
+                                <div style="color: #ff0000;"><?= t('*Please note that the Total Price will change according to the number of Credit days*'); ?></div>
                                 <div class="">
                                     <?php foreach ($orderChoicesAttList as $ak) { ?>
                                         <div class="row" data-akid="<?= $ak->getAttributeKeyID()?>">
@@ -122,19 +123,20 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                             </div>
                             <?php } ?>
                         <div class="row">  
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="store-checkout-billing-state"><?= t("Emirate/Area *") ?></label>
-                                    <?php $billingState = $customer->getAddressValue('billing_address', 'state_province'); ?>
-                                    <?= $form->select('store-checkout-billing-state', $states, $billingState ? $billingState : ""); ?>
-                                </div>
-                            </div>
+
                             <div class="col-md-6">
                                 <input type="hidden" id="store-checkout-saved-billing-state" value="<?= $billingState ?>">                                
                                 <div class="form-group">
                                     <label for="store-checkout-billing-country"><?= t("Country *") ?></label>
                                     <?php $country = $customer->getAddressValue('billing_address', 'country') ?>
                                     <?= $form->select('store-checkout-billing-country', $billingCountries, $country ? $country : ($defaultBillingCountry ? $defaultBillingCountry : 'AE'), array("onchange" => "communityStore.updateBillingStates()", "disabled" => "true")); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="store-checkout-billing-state"><?= t("Emirate/Area *") ?></label>
+                                    <?php $billingState = $customer->getAddressValue('billing_address', 'state_province'); ?>
+                                    <?= $form->select('store-checkout-billing-state', $states, $billingState ? $billingState : ""); ?>
                                 </div>
                             </div>
                         </div>
