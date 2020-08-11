@@ -107,7 +107,7 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                             </div>
 
                             <div id="store-checkout-form-group-other-attributes" class="store-checkout-form-group <?= isset($paymentErrors) ? 'store-checkout-form-group-complete' : '';?>" style="display:none;">
-                                <div style="color: #ff0000;"><?= t('*Please note that the Total Price will change according to the number of Credit days*'); ?></div>
+                               <!-- <div style="color: #ff0000;"><?php // t('*Please note that the Total Price will change according to the number of Credit days*'); ?></div> -->
                                 <div class="">
                                     <?php foreach ($orderChoicesAttList as $ak) { ?>
                                         <div class="row" data-akid="<?= $ak->getAttributeKeyID()?>">
