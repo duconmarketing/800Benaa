@@ -17,7 +17,7 @@ ob_start();
 <html>
     <head>
     </head>
-    <body style="width: 70%;alignment: center;">
+    <body style="width: 75%;alignment: center;">
         <?php $header = trim(\Config::get('community_store.receiptHeader')); ?>
 
         <?php
