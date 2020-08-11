@@ -590,6 +590,10 @@ class StatesProvincesList
                 'AE' => array(
                     'DXB' => tc('Emirates', 'Dubai'),
                     'SHJ' => tc('Emirates', 'Sharjah'),
+                    'ADD' => tc('Emirates', '- Al Dhaid'),
+                    'SY' => tc('Emirates', '- Seyooh'),
+                    'MH' => tc('Emirates', '- Maleha'),
+                    'AMD' => tc('Emirates', '- Al Madam'),
 //                    'SY' => tc('Emirates', 'Seyoohj'),
                     'AJ' => tc('Emirates', 'Ajman'),
 //                    'AMD' => tc('Emirates', 'Al Madam'),
@@ -612,7 +616,7 @@ class StatesProvincesList
                     case 'ja_JP@JP':
                         break;
                     default:
-                        $comparer->sort($provinces[$country], true);
+                       // $comparer->sort($provinces[$country], true);
                         break;
                 }
             }

@@ -960,13 +960,15 @@ div#cart-modal a {
 }
 .cover .store-cart-page .btn-primary, .cover .store-cart-page .btn-default {
     color: #fff;
-    background-color: #000;
+    background-color: #ec7c05;
+    font-weight: bolder;
     border: none;
 }
 .cover .store-checkout-form-group-buttons input[type="submit"],.cover .store-checkout-form-group-buttons .btn-default {
     /*color: #ec7c05;*/
     color: #fff;
-    background-color: #000;
+    background-color: #ec7c05;
+    font-weight: bolder;
 }
 .cover .in_content .my-account {
     text-align: center;
