@@ -542,7 +542,7 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
     </script>        
     
     <script>
-    $(".store-btn-complete-order").click(function(){
+//   $(".store-btn-complete-order").click(function(){
 //        jQuery.support.cors = true;
 //        var formData = '631421_81284pi_631421_81284='+$("#store-checkout-billing-first-name").val();
 //        formData += '&631421_81286pi_631421_81286='+$("#store-checkout-billing-last-name").val();
@@ -555,6 +555,6 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
 //        formData += '&631421_81302pi_631421_81302='+$("#store-checkout-billing-country").val();
 //        $.post('https://www2.duconodl.com/l/631421/2020-07-20/2zh33', formData, function(res){
 //        });
-    });
+//   });
     
     </script>
