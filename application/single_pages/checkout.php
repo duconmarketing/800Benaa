@@ -107,7 +107,6 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                             </div>
 
                             <div id="store-checkout-form-group-other-attributes" class="store-checkout-form-group <?= isset($paymentErrors) ? 'store-checkout-form-group-complete' : '';?>" style="display:none;">
-
                                 <div class="">
                                     <?php foreach ($orderChoicesAttList as $ak) { ?>
                                         <div class="row" data-akid="<?= $ak->getAttributeKeyID()?>">
@@ -334,7 +333,7 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                                         $props = array('data-payment-method-id' => $pm->getID());
                                     }
                                     ?>
-                                    <div class='radio' id="radio<?=$i?>" <?php if($i==2){?>style="display: none;" <?php }?> >
+                                    <div class='radio' id="radio<?=$i?>" >
                                         <label>
                                             <?= $form->radio('payment-method', $pm->getHandle(), false, $props) ?>
                                             <?= $pm->getDisplayName() ?>
@@ -359,7 +358,7 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                                 ?>
                                 <div class="store-checkout-form-group-buttons">
                                  <a href="#" class="store-btn-previous-pane btn btn-default"><?= t("Edit") ?></a>
-                                <input type="submit" class="store-btn-complete-order btn btn-default pull-right" value="<?= $pm->getButtonLabel()? $pm->getButtonLabel() : t("Complete Order") ?>">
+                                <input type="submit" class="store-btn-complete-order btn btn-default pull-right" id="store-btn-complete-order" value="<?= $pm->getButtonLabel()? $pm->getButtonLabel() : t("Confirm Order") ?>">
 
                                 </div></div>
 
@@ -519,14 +518,23 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
 
     <script>
     $(document).ready(function() {
+        $("input[name$='payment-method']").click(function() {
+            var test1 = $(this).val();
+            if(test1 == 'network_standard')
+            {
+                $("#store-btn-complete-order").val('Proceed to Pay');
+            }else {
+                $("#store-btn-complete-order").val('Confirm Order');
+            }
+        });
         $("input[name$='companyRadio']").click(function() {
             var test = $(this).val();
             if(test == 1){
-                $("#radio2").hide();
+                //$("#radio2").hide();
                 $("#store-checkout-form-group-other-attributes").hide();
                 $("#store-checkout-form-group-other-attributes").find(".form-control").val('');
             }else{
-                $("#radio2").show();
+               // $("#radio2").show();
                 $("#store-checkout-form-group-other-attributes").show();
             }
         });
