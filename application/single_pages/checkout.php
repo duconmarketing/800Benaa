@@ -522,9 +522,9 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
             var test1 = $(this).val();
             if(test1 == 'network_standard')
             {
-                $("#store-btn-complete-order").val('Proceed to Pay');
-            }else {
-                $("#store-btn-complete-order").val('Confirm Order');
+                $(".store-btn-complete-order").val('Proceed to Pay');
+            } else {
+                $(".store-btn-complete-order").val('Confirm Order');
             }
         });
         $("input[name$='companyRadio']").click(function() {
