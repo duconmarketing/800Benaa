@@ -588,27 +588,24 @@ class StatesProvincesList
                     'ZH' => tc('Swiss Canton', 'Zurich'),
                 ),
                 'AE' => array(
-                    'DXB' => tc('Emirates', 'Dubai'),
-                    'SHJ' => tc('Emirates', 'Sharjah'),
-                    'ADD' => tc('Emirates', '- Al Dhaid'),
-                    'SY' => tc('Emirates', '- Seyooh'),
-                    'MH' => tc('Emirates', '- Maleha'),
-                    'AMD' => tc('Emirates', '- Al Madam'),
-//                    'SY' => tc('Emirates', 'Seyoohj'),
-                    'AJ' => tc('Emirates', 'Ajman'),
-//                    'AMD' => tc('Emirates', 'Al Madam'),
-                    'UQ' => tc('Emirates', 'UAQ'),
-//                    'MH' => tc('Emirates', 'Maleha'),
-//                    'AA' => tc('Emirates', 'Al Ain'),
-                    'RK' => tc('Emirates', 'RAK'),
                     'AD' => tc('Emirates', 'Abu Dhabi'),
-//                    'HT' => tc('Emirates', 'Hatta'),
-//                    'ADD' => tc('Emirates', 'Al Dhaid'),
+                    'AA' => tc('Emirates', '&nbsp;&nbsp;&nbsp;Al Ain'),
+                    'AW' => tc('Emirates', '&nbsp;&nbsp;&nbsp;Al Wagan/ Eastern Boundaries'),
+                    'RW' => tc('Emirates', '&nbsp;&nbsp;&nbsp;Ruwais/ Western Boundaries'),
+                    'AJ' => tc('Emirates', 'Ajman'),
+                    'DXB' => tc('Emirates', 'Dubai'),
+                    'HT' => tc('Emirates', '&nbsp;&nbsp;&nbsp;Hatta'),
                     'FJ' => tc('Emirates', 'Fujairah'),
-//                    'RW' => tc('Emirates', 'Ruwais/ Western Boundaries'),
-//                    'AW' => tc('Emirates', 'Al Wagan/ Eastern Boundaries'),
-                ),
+                    'RK' => tc('Emirates', 'RAK'),
+                    'SHJ' => tc('Emirates', 'Sharjah'),
+                    'ADD' => tc('Emirates', '&nbsp;&nbsp;&nbsp;Al Dhaid'),
+                    'AMD' => tc('Emirates', '&nbsp;&nbsp;&nbsp;Al Madam'),
+                    'MH' => tc('Emirates', '&nbsp;&nbsp;&nbsp;Maleha'),
+                    'SY' => tc('Emirates', '&nbsp;&nbsp;&nbsp;Seyooh'),
 
+
+                    'UQ' => tc('Emirates', 'UAQ'),
+                ),
             );
             $comparer = new \Punic\Comparer($locale);
             foreach (array_keys($provinces) as $country) {
@@ -616,7 +613,7 @@ class StatesProvincesList
                     case 'ja_JP@JP':
                         break;
                     default:
-                       // $comparer->sort($provinces[$country], true);
+                        //$comparer->sort($provinces[$country], true);
                         break;
                 }
             }

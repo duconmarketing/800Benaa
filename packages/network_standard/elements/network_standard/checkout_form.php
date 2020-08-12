@@ -2,4 +2,4 @@
 extract($vars);
 ?>
 
-<p><?= t("Click \"Complete Order\" to Proceed to the Network Payment Website.")?></p>
+<p><img src="./application/themes/build/images/card.jpg" border="0"/><br/><?= t("Click \"Proceed to Pay\" to make the Payment.")?></p>
