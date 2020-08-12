@@ -358,7 +358,7 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                                 ?>
                                 <div class="store-checkout-form-group-buttons">
                                  <a href="#" class="store-btn-previous-pane btn btn-default"><?= t("Edit") ?></a>
-                                <input type="submit" class="store-btn-complete-order btn btn-default pull-right" id="store-btn-complete-order" value="<?= $pm->getButtonLabel()? $pm->getButtonLabel() : t("Confirm Order") ?>">
+                                <input type="submit" class="store-btn-complete-order btn btn-default pull-right" id="store-btn-complete-order1" value="<?= $pm->getButtonLabel()? $pm->getButtonLabel() : t("Confirm Order") ?>">
 
                                 </div></div>
 
