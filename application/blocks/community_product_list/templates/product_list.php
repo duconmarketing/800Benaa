@@ -119,16 +119,18 @@ if ($products) {
                             <p> ID: <span><?php echo $product->getSKU(); ?></span></p>
                         <?php } ?>
                     </div>
-                    <?php if ($showAddToCart) { ?>
+                    <?php if ($showAddToCart) {
+                        $nqty = $product->getAttribute('minimum_qty');
+                        $nqty = ($nqty < 1) ? 1 : $nqty ?>
                         <?php if ($product->allowQuantity() && $showQuantity) { ?>
                             <div class="store-product-quantity form-group">
                                 <label class="store-product-option-group-label">
                                     <?= t('Quantity') ?>
                                 </label>
-                                <input type="number" name="quantity" class="store-product-qty form-control" value="1" min="1" step="1">
+                                <input type="number" name="quantity" class="store-product-qty form-control" value="<?= $nqty?>" min="1" step="1">
                             </div>
                         <?php } else { ?>
-                            <input type="hidden" name="quantity" class="store-product-qty" value="1">
+                            <input type="hidden" name="quantity" class="store-product-qty" value="<?= $nqty?>">
                         <?php } ?>
                         <?php /* ?><?php
                           foreach ($product->getOptions() as $option) {
