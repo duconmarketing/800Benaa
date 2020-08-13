@@ -130,9 +130,13 @@ use \Concrete\Package\CommunityStore\Src\CommunityStore\Product\ProductOption\Pr
                             </td>
 
                             <td class="store-cart-list-product-qty col-xs-2">
+                                <?php
+                                $minQty = $product->getAttribute('minimum_qty');
+                                $minQty = ($minQty < 1) ? 1 : $minQty;
+                                ?>
                                 <?php if ($product->allowQuantity()) { ?>
                                     <input type="hidden" name="instance[]" value="<?= $k?>">
-                                    <input type="number" name="pQty[]" class="form-control" <?= ($product->allowBackOrders() || $product->isUnlimited() ? '' : 'max="'.$product->getQty() . '"');?> min="1" value="<?= $qty?>" onchange="return updateQuantity();" style="width: 65px !important;" />
+                                    <input type="number" name="pQty[]" class="form-control" <?= ($product->allowBackOrders() || $product->isUnlimited() ? '' : 'max="'.$product->getQty() . '"');?> min="<?= $minQty ?>" value="<?= $qty?>" onchange="return updateQuantity();" style="width: 65px !important;" />
                                 <?php }  else { ?>
                                 1
                             <?php } ?>

@@ -12,7 +12,7 @@ global $u;
 
     <?php if (isset($actiondata) and ! empty($actiondata)) { ?>
         <?php if ($actiondata['action'] == 'update') { ?>
-            <!--<p class="alert alert-success"><?= t('Your cart has been updated'); ?></p>-->
+                    <!--<p class="alert alert-success"><?= t('Your cart has been updated'); ?></p>-->
         <?php } ?>
 
         <?php if ($actiondata['action'] == 'clear') { ?>
@@ -118,11 +118,15 @@ global $u;
                                     <?php } ?>
                                 </td>
                                 <td class="store-cart-product-qty text-right">
+                                    <?php
+                                    $minQty = $product->getAttribute('minimum_qty');
+                                    $minQty = ($minQty < 1) ? 1 : $minQty;
+                                    ?>
                                     <?php if ($product->allowQuantity()) { ?>
 
                                         <input type="hidden" name="instance[]" value="<?= $k ?>"/>
                                         <input type="number" class="form-control" name="pQty[]"
-                                               min="1" <?= ($product->allowBackOrders() || $product->isUnlimited() ? '' : 'max="' . $product->getQty() . '"'); ?>
+                                               min="<?= $minQty ?>" <?= ($product->allowBackOrders() || $product->isUnlimited() ? '' : 'max="' . $product->getQty() . '"'); ?>
                                                value="<?= $qty ?>" style="width: 65px !important;" onchange="return updateQuantity()">
                                            <?php } else { ?>
                                         1
@@ -130,7 +134,7 @@ global $u;
 
                                     <a name="action" data-instance="<?= $k ?>"
                                        class="store-btn-cart-list-remove btn-xs btn btn-danger" type="submit">
-                                        <i class="fa fa-remove" style="color: #fff;"></i><?php //echo t("Remove")?>
+                                        <i class="fa fa-remove" style="color: #fff;"></i><?php //echo t("Remove") ?>
                                     </a>
                                 </td>
                             </tr>
@@ -185,8 +189,8 @@ global $u;
                         <label class="control-label" for="cname"> Company Name <span class="text-muted small" style="font-weight: normal">*</span> </label>
                         <input name="cname" id="cname" class="form-control" type="text" required value="" style="width:100%">
 
-<!--                        <label class="control-label" for="trnnumber"> TRN Number </label>
-                        <input name="trnnumber" id="trnnumber" class="form-control" type="text" value="" style="width:100%">-->
+                        <!--                        <label class="control-label" for="trnnumber"> TRN Number </label>
+                                                <input name="trnnumber" id="trnnumber" class="form-control" type="text" value="" style="width:100%">-->
 
                         <label class="control-label" for="email"> Email <span class="text-muted small" style="font-weight: normal">*</span> </label>
                         <input name="email" id="email" class="form-control" type="email" value="" required style="width:100%">
@@ -244,10 +248,10 @@ global $u;
         </p>
 
         <?php if ($shippingEnabled) { ?>
-<!--            <p class="store-cart-page-shipping text-right"><strong><?= t("Shipping") ?>:</strong>
-                <span id="store-shipping-total">
-                    <?= $shippingtotal !== false ? ($shippingtotal > 0 ? StorePrice::format($shippingtotal) : t('No Charge')) : t('to be determined'); ?>
-                </span></p>-->
+        <!--            <p class="store-cart-page-shipping text-right"><strong><?= t("Shipping") ?>:</strong>
+                        <span id="store-shipping-total">
+            <?= $shippingtotal !== false ? ($shippingtotal > 0 ? StorePrice::format($shippingtotal) : t('No Charge')) : t('to be determined'); ?>
+                        </span></p>-->
         <?php } ?>
 
         <?php if (!empty($discounts)) { ?>
@@ -265,38 +269,40 @@ global $u;
             </p>
 
         <?php } ?>
-            
+
         <?php
         if ($taxtotal > 0) {
             echo '<p class="store-cart-page-cart-total text-right">';
-            foreach ($taxes as $tax) {                
-                if ($tax['taxamount'] > 0) { ?>
+            foreach ($taxes as $tax) {
+                if ($tax['taxamount'] > 0) {
+                    ?>
                     <strong class="store-cart-grand-total-label"><?= ($tax['name'] ? $tax['name'] : t("Tax")) ?>:</strong>
                     <span class="store-cart-grand-total-value"><?= StorePrice::format($tax['taxamount']); ?></span>
-                    </li>
-                <?php }
+                </li>
+            <?php
             }
-            echo '</p>';
         }
-        ?>
-        
-        <p class="store-cart-page-cart-total text-right">
-            <strong class="store-cart-grand-total-label"><?= t("Total") ?>:</strong>
-            <span class="store-cart-grand-total-value"><?= StorePrice::format($total) ?></span>
-        </p>    
-<!--        <p class="text-right">
-            <small>*Orders below <strong>AED 500</strong>, Delivery charge <strong>AED 50 </strong>is applied.</small>
-        </p>-->
+        echo '</p>';
+    }
+    ?>
 
-        <div class="store-cart-page-cart-links pull-right">
-            <a class="store-btn-cart-page-checkout btn btn-primary"
-               href="<?= \URL::to('/checkout') ?>"><?= t('Checkout') ?>
-            </a>
-        </div>        
-    <?php } else { ?>
-        <p class="alert alert-info"><?= t('Your cart is empty'); ?></p>
-        <a href="/product">Continue Shopping</a>
-    <?php } ?>
+    <p class="store-cart-page-cart-total text-right">
+        <strong class="store-cart-grand-total-label"><?= t("Total") ?>:</strong>
+        <span class="store-cart-grand-total-value"><?= StorePrice::format($total) ?></span>
+    </p>    
+    <!--        <p class="text-right">
+        <small>*Orders below <strong>AED 500</strong>, Delivery charge <strong>AED 50 </strong>is applied.</small>
+    </p>-->
+
+    <div class="store-cart-page-cart-links pull-right">
+        <a class="store-btn-cart-page-checkout btn btn-primary"
+           href="<?= \URL::to('/checkout') ?>"><?= t('Checkout') ?>
+        </a>
+    </div>        
+<?php } else { ?>
+    <p class="alert alert-info"><?= t('Your cart is empty'); ?></p>
+    <a href="/product">Continue Shopping</a>
+<?php } ?>
 
 </div>
 <script type="text/javascript">
@@ -363,25 +369,25 @@ global $u;
 </style>
 
 <script>
-function updateQuantity(){
-    $(".store-btn-cart-list-update").trigger("click");
-}
+    function updateQuantity() {
+        $(".store-btn-cart-list-update").trigger("click");
+    }
 
-window.setTimeout(function() {
-    $(".alert-success, .alert-warning").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
-    });
-}, 2000);
+    window.setTimeout(function () {
+        $(".alert-success, .alert-warning").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 2000);
 
-$("#qte").submit(function(){
-    jQuery.support.cors = true;
-    var formData = '631421_81406pi_631421_81406='+$("#firstname").val();
-    formData += '&631421_81408pi_631421_81408='+$("#lname").val();
-    formData += '&631421_81410pi_631421_81410='+$("#cname").val();
-    formData += '&631421_81412pi_631421_81412='+$("#email").val();
-    formData += '&631421_81414pi_631421_81414='+$("#pnumber").val();
-    formData += '&631421_81416pi_631421_81416='+$("#address").val();
-    $.post('https://www2.duconodl.com/l/631421/2020-07-21/2zn55', formData, function(res){
+    $("#qte").submit(function () {
+        jQuery.support.cors = true;
+        var formData = '631421_81406pi_631421_81406=' + $("#firstname").val();
+        formData += '&631421_81408pi_631421_81408=' + $("#lname").val();
+        formData += '&631421_81410pi_631421_81410=' + $("#cname").val();
+        formData += '&631421_81412pi_631421_81412=' + $("#email").val();
+        formData += '&631421_81414pi_631421_81414=' + $("#pnumber").val();
+        formData += '&631421_81416pi_631421_81416=' + $("#address").val();
+        $.post('https://www2.duconodl.com/l/631421/2020-07-21/2zn55', formData, function (res) {
+        });
     });
-});
 </script>

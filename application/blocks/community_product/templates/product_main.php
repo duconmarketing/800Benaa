@@ -13,7 +13,7 @@ if (is_object($product) && $product->isActive()) {
 
                     <div class="product_img">
                         <?php
-                        $page=Page::getByID($product->getPageID());  
+                        $page = Page::getByID($product->getPageID());
                         $parent_page = Page::getByID($page->getCollectionParentID());
                         $imgObj = $product->getImageObj();
                         $popImg = $product->getAttribute('image_popup');
@@ -299,15 +299,20 @@ if (is_object($product) && $product->isActive()) {
                     }
                     ?>
                     <div class="store-product-options" id="product-options-<?= $bID; ?>">
+                        <?php
+                        $minQty = $product->getAttribute('minimum_qty');
+                        $minQty = ($minQty < 1) ? 1 : $minQty;
+                        ?>
+
                         <?php if ($product->allowQuantity() && $showQuantity) { ?>
                             <div class="store-product-quantity form-group">
                                 <label class="store-product-option-group-label">
                                     <?= t('Quantity') ?>
                                 </label>
-                                <input type="number" name="quantity" class="store-product-qty form-control" value="1" min="1" step="1" style="width:20%;">
+                                <input type="number" name="quantity" class="store-product-qty form-control" value="<?= $minQty ?>" min="<?= $minQty ?>" step="1" style="width:20%;">
                             </div>
                         <?php } else { ?>
-                            <input type="hidden" name="quantity" class="store-product-qty" value="1">
+                            <input type="hidden" name="quantity" class="store-product-qty" value="<?= $minQty ?>">
                         <?php } ?>
                         <?php
                         foreach ($product->getOptions() as $option) {
@@ -364,7 +369,7 @@ if (is_object($product) && $product->isActive()) {
                     <?php if ($showCartButton) { ?>
                         <input type="hidden" name="pID" value="<?= $product->getID() ?>">
                         <?php if ($product->getAttribute('redirect_to_site') && $product->getAttribute('redirect_url') != '') { ?>
-                        <a data-add-type="none" class="add_cart btn btn-primary" href="<?= $product->getAttribute('redirect_url') ?>">
+                            <a data-add-type="none" class="add_cart btn btn-primary" href="<?= $product->getAttribute('redirect_url') ?>">
                                 <?= t("Go to Website") ?>
                             </a> 
                         <?php } else { ?>
@@ -375,7 +380,8 @@ if (is_object($product) && $product->isActive()) {
                                 class="store-out-of-stock-label <?= ($product->isSellable() ? 'hidden' : ''); ?>">
                                     <?= t("Out of Stock") ?>
                             </span>
-                        <?php }
+                        <?php
+                        }
                     }
                     ?>
                 </div>
@@ -514,10 +520,10 @@ if (is_object($product) && $product->isActive()) {
     ga('require', 'ec');
 
     ga('ec:addProduct', {
-      'id': '<?= $product->getSKU() ?>',
-      'name': '<?= utf8_encode($product->getName()); ?>',
-      'category': '<?=$parent_page->getCollectionName();?>',
-      'brand': '<?=$brndName?>',
+        'id': '<?= $product->getSKU() ?>',
+        'name': '<?= utf8_encode($product->getName()); ?>',
+        'category': '<?= $parent_page->getCollectionName(); ?>',
+        'brand': '<?= $brndName ?>',
 //      'variant': 'black'
     });
 

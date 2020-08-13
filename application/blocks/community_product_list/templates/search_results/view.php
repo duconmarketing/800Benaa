@@ -114,58 +114,18 @@ if ($products && !empty($_GET['keywords']) && empty($_GET['category'])) {
                         <?php } ?>
 
                     </div>
-                    <?php if ($showAddToCart) { ?>
-
+                    <?php if ($showAddToCart) {
+                        $minQty = $product->getAttribute('minimum_qty');
+                        $minQty = ($minQty < 1) ? 1 : $minQty;
+                        ?>
                         <?php if ($product->allowQuantity() && $showQuantity) { ?>
                             <div class="store-product-quantity form-group">
                                 <label class="store-product-option-group-label"><?= t('Quantity') ?></label>
-                                <input type="number" name="quantity" class="store-product-qty form-control" value="1" min="1" step="1">
+                                <input type="number" name="quantity" class="store-product-qty form-control" value="<?= $minQty?>" min="<?= $minQty?>" step="1">
                             </div>
                         <?php } else { ?>
-                            <input type="hidden" name="quantity" class="store-product-qty" value="1">
+                            <input type="hidden" name="quantity" class="store-product-qty" value="<?= $minQty?>">
                         <?php } ?>
-
-                        <?php /* ?><?php
-                          foreach ($product->getOptions() as $option) {
-                          $optionItems = $option->getOptionItems();
-                          $optionType = $option->getType();
-                          $required = $option->getRequired();
-
-                          $requiredAttr = '';
-
-                          if ($required) {
-                          $requiredAttr = ' required="required" placeholder="'.t('Required').'" ';
-                          }
-                          ?>
-
-                          <?php if (!$optionType || $optionType == 'select') { ?>
-                          <div class="store-product-option-group form-group <?= $option->getHandle() ?>">
-                          <label class="store-product-option-group-label"><?= $option->getName() ?></label>
-                          <select class="store-product-option form-control" name="po<?= $option->getID() ?>">
-                          <?php
-                          foreach ($optionItems as $optionItem) {
-                          if (!$optionItem->isHidden()) { ?>
-                          <option value="<?= $optionItem->getID() ?>"><?= $optionItem->getName() ?></option>
-                          <?php }
-                          // below is an example of a radio button, comment out the <select> and <option> tags to use instead
-                          //echo '<input type="radio" name="po'.$option->getID().'" value="'. $optionItem->getID(). '" />' . $optionItem->getName() . '<br />'; ?>
-                          <?php } ?>
-                          </select>
-                          </div>
-                          <?php } elseif ($optionType == 'text') { ?>
-                          <div class="store-product-option-group form-group <?= $option->getHandle() ?>">
-                          <label class="store-product-option-group-label"><?= $option->getName() ?></label>
-                          <input class="store-product-option-entry form-control" <?= $requiredAttr; ?> name="pt<?= $option->getID() ?>" />
-                          </div>
-                          <?php } elseif ($optionType == 'textarea') { ?>
-                          <div class="store-product-option-group form-group <?= $option->getHandle() ?>">
-                          <label class="store-product-option-group-label"><?= $option->getName() ?></label>
-                          <textarea class="store-product-option-entry form-control" <?= $requiredAttr; ?> name="pa<?= $option->getID() ?>"></textarea>
-                          </div>
-                          <?php } elseif ($optionType == 'hidden') { ?>
-                          <input type="hidden" class="store-product-option-hidden <?= $option->getHandle() ?>" name="ph<?= $option->getID() ?>" />
-                          <?php } ?>
-                          <?php } ?><?php */ ?>
 
 
                         <input type="hidden" name="pID" value="<?= $product->getID() ?>">
