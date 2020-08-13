@@ -18,7 +18,7 @@ class States extends Controller
             if ($type == "tax") {
                 echo "<select name='taxState' id='taxState' class='form-control'>";
             } else {
-                echo "<select required='required' name='store-checkout-{$type}-state' id='store-checkout-{$type}-state' ccm-passed-value='' class='form-control' onchange='billingSubmit()'>";
+                echo "<select required='required' name='store-checkout-{$type}-state' id='store-checkout-{$type}-state' ccm-passed-value='' class='form-control' >";
             }
             echo '<option value=""></option>';
 
