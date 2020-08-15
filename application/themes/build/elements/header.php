@@ -310,8 +310,9 @@ global $u;
                                         <div class="input-group-addon">
                                             <div class="input-group-text">Mobile</div>
                                         </div>
-                                        <input  id="phone" maxlength="40" name="phone" size="20" type="text" class="form-control" required="" />
+                                        <input  id="phone2" maxlength="40" name="phone" size="20" type="text" class="form-control" />
                                     </div>
+                                    <span id="phone-info2" style="font-size:.8em;color: #FF6600;letter-spacing:1px;padding-left:5px;"></span>
                                 </div>
                                 <input type="submit" name="submit" value="Call Me" class="button-leadform" style="background-color: #ec7c05;color: #fff;">
 

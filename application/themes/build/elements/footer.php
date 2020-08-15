@@ -93,30 +93,55 @@
 </script>
 
 <script>
-    $('#fastTrackForm').submit(function () {
+    $('#fastTrackForm').submit(function(event) {
         event.preventDefault();
-        $.post($(this).attr('action'), $(this).serialize(), function (res) {
-        });
-        $('#fastTrackForm').hide();
-        $('.modal-body .modal-succ-msg').show();
-        setTimeout(function () {
-            $('#myModal').modal('hide');
-        }, 5000);
-        return false;
+        var ph=$('#phone2').val();
+        if(!(ph)) {
+            $("#phone-info2").html("Please enter mobile number");
+            return false;
+        } else if(isNaN(ph)) {
+            $("#phone-info2").html("Please enter digits only");
+            return false;
+        } else if(ph.length < 9) {
+            $("#phone-info2").html("Invalid mobile number");
+            return false;
+        } else if(phone_validate(ph)) {
+            $.post($(this).attr('action'), $(this).serialize(), function (res) {
+            });
+            $('#fastTrackForm').hide();
+            $('.modal-body .modal-succ-msg').show();
+            setTimeout(function () {
+                $('#myModal').modal('hide');
+            }, 5000);
+            return false;
+        }
     });
 
-    $('#fastTrackFormHome').submit(function () {
+    $('#fastTrackFormHome').submit(function(event) {
         event.preventDefault();
-        $.post($(this).attr('action'), $(this).serialize(), function (res) {
-        });
-        $('#fastTrackForm').hide();
-        $('#myModal').modal();
-        $('.modal-body .modal-succ-msg').show();
-        setTimeout(function () {
-            $('#myModal').modal('hide');
-        }, 5000);
-        $(this).find("input[type=text]").val("");
-        return false;
+        var ph=$('#phone1').val();
+        if(!(ph)) {
+            $("#phone-info").html("Please enter mobile number");
+            return false;
+        } else if(isNaN(ph)) {
+            $("#phone-info").html("Please enter digits only");
+            return false;
+        } else if(ph.length < 9) {
+            $("#phone-info").html("Invalid mobile number");
+            return false;
+        } else if(phone_validate(ph)) {
+            $("#phone-info").html("");
+            $.post($(this).attr('action'), $(this).serialize(), function (res) {
+            });
+            $('#fastTrackForm').hide();
+            $('#myModal').modal();
+            $('.modal-body .modal-succ-msg').show();
+            setTimeout(function () {
+                $('#myModal').modal('hide');
+            }, 5000);
+            $(this).find("input[type=text]").val("");
+            return false;
+        }
     });
 
     $('#myModal').on('hidden.bs.modal', function () {
@@ -124,6 +149,12 @@
         $('#fastTrackForm').show();
         $('.modal-body .modal-succ-msg').hide();
     });
+
+    function phone_validate(phno)
+    {
+        var regexPattern=new RegExp(/^[0-9-+]+$/);    // regular expression pattern
+        return regexPattern.test(phno);
+    }
 </script>
 
 <script>
