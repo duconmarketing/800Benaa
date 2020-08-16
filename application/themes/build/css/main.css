@@ -86,7 +86,7 @@ body {
 }
 #resizing_select {
     width: 50px;
-} 
+}
 
 #width_tmp_select{
     display : none;
@@ -832,7 +832,7 @@ body {
     padding: 5px 6px 5px 6px;
     border-radius: 100%;
     margin-right: 7px;
-}	
+}
 .cover .product_detail .pro_det p {
     font-weight: bold;
     font-size: 15px;
@@ -1181,7 +1181,7 @@ body#login .btn-primary, body#login .btn-success {
 }
 .cover .inside_high h1, .cover .inside_high h2 {
     color: #fff;
-}	
+}
 .cover .trade_high {
     float: left;
     width: 100%;
@@ -1201,7 +1201,7 @@ body#login .btn-primary, body#login .btn-success {
 }
 .cover .trade_high.bg p {
     color: #ec7c05;
-}		
+}
 .cover .full h3.failure {
     color: #Ec7c05;
     padding-top: 45px;
@@ -1219,7 +1219,7 @@ body#login .btn-primary, body#login .btn-success {
 }
 .table>tbody>tr>td{
     vertical-align:middle;
-}	
+}
 .cover .alert_img {
     float: left;
     width: 100%;
@@ -1227,7 +1227,7 @@ body#login .btn-primary, body#login .btn-success {
 }
 .cover .alert_img img {
     display: inline-block;
-}	
+}
 .cover .ccm-dashboard-header-buttons.cust {
     float: right;
     width:100%;
@@ -1362,14 +1362,14 @@ div#exTab3 ul li {
     }
     .cover .sign_up ul li ul{
         position:relative;
-    }	
+    }
     .cover .logo img {
         display: inherit;
-    }	
+    }
     .cover .news_left {
         padding-top:0;
         text-align: center;
-    }	
+    }
     .cover .logo {
         text-align: center;
     }
@@ -1405,20 +1405,20 @@ div#exTab3 ul li {
         display: inline-block;
     }
     .cover .left_col1{
-        padding: 60px 0 60px 0;	
+        padding: 60px 0 60px 0;
     }
     .cover .left_col1 span:last-child {
         float: none;
-    }	
+    }
     .cover .left_col1 span{
         float: none;
     }
     #mc_embed_signup input.email{
         width:70% !important;
-    }	
+    }
     .cover .search ul li a {
         padding: 0px 3px 7px 3px;
-    }	
+    }
     .search-select{
         width: 80%;
     }
@@ -1445,32 +1445,32 @@ div#exTab3 ul li {
     }
     .cover .search ul li a {
         padding: 0px 3px 7px 3px;
-    }	
+    }
     .cover .menu_bar .menu ul li a {
         font-size: 12px;
         padding: 8px 19px 7px 19px;
-    }	
+    }
     .cover .home_slider ul li a{
         font-size:10px;
-    }	
+    }
     .cover .top_highlight .bg1, .cover .top_highlight .bg2 {
         padding-left:10px;
-    }	
+    }
     .cover .top_highlight .bg1 h2, .cover .top_highlight .bg2 h2 {
         font-size: 30px;
-    }	
+    }
     .cover .left_col1{
-        padding: 60px 0 60px 0;	
+        padding: 60px 0 60px 0;
     }
     .cover .left_col1 span:last-child {
         float: none;
-    }	
+    }
     .cover .left_col1 span{
         float: none;
     }
     .cover .box_or .content p, .cover .box_bl .content p {
         font-size: 14px;
-    }	
+    }
     .cover .box_or .content h4, .cover .box_bl .content h4 {
         margin: 6px;
         font-size: 13px;
@@ -1485,7 +1485,7 @@ div#exTab3 ul li {
         width: 22%;
     }
 }
-@media only screen and (min-width:1024px) and (max-width: 1200px) {	
+@media only screen and (min-width:1024px) and (max-width: 1200px) {
     .cover .menu_bar .menu ul li a {
         font-size: 15px;
         padding: 8px 26px 7px 26px;
@@ -1498,7 +1498,7 @@ div#exTab3 ul li {
 .a_title{
     display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;
 }
-@media only screen and (max-width: 768px) {	
+@media only screen and (max-width: 768px) {
     .home_pro h5{font-size: 10px; line-height: unset;}
     .cover .home_pro ul li {padding-bottom: 2px;}
 }

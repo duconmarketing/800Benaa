@@ -12,7 +12,7 @@ global $u;
 
     <?php if (isset($actiondata) and ! empty($actiondata)) { ?>
         <?php if ($actiondata['action'] == 'update') { ?>
-                    <!--<p class="alert alert-success"><?= t('Your cart has been updated'); ?></p>-->
+            <!--<p class="alert alert-success"><?= t('Your cart has been updated'); ?></p>-->
         <?php } ?>
 
         <?php if ($actiondata['action'] == 'clear') { ?>
@@ -37,119 +37,119 @@ global $u;
         <form method="post" class="form-inline">
             <table id="store-cart" class="store-cart-table table table-hover table-condensed">
                 <thead>
-                    <tr>
-                        <th colspan="2"><?= t('Product'); ?></th>
-                        <th><?= t('Price'); ?></th>
-                        <th class="text-right"><?= t('Quantity'); ?></th>
-                    </tr>
+                <tr>
+                    <th colspan="2"><?= t('Product'); ?></th>
+                    <th><?= t('Price'); ?></th>
+                    <th class="text-right"><?= t('Quantity'); ?></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    foreach ($cart as $k => $cartItem) {
+                <?php
+                foreach ($cart as $k => $cartItem) {
 
-                        $qty = $cartItem['product']['qty'];
-                        $product = $cartItem['product']['object'];
-                        if (is_object($product)) {
-                            ?>
+                    $qty = $cartItem['product']['qty'];
+                    $product = $cartItem['product']['object'];
+                    if (is_object($product)) {
+                        ?>
 
-                            <tr class="store-cart-item">
-                                <?php $thumb = $product->getImageThumb(); ?>
-                                <?php if ($thumb) { ?>
-                                    <td class="store-cart-list-thumb">
-                                        <a href="<?= URL::to(Page::getByID($product->getPageID())) ?>">
-                                            <?= $product->getImageThumb() ?>
-                                        </a>
-                                    </td>
-                                    <td class="store-cart-product-name">
-                                    <?php } else { ?>
-                                    <td class="store-cart-product-name" colspan="2">
-                                    <?php } ?>
-                                    <a href="<?= URL::to(Page::getByID($product->getPageID())) ?>">
-                                        <?= $product->getName() ?>
-                                    </a>
+                        <tr class="store-cart-item">
+                            <?php $thumb = $product->getImageThumb(); ?>
+                            <?php if ($thumb) { ?>
+                            <td class="store-cart-list-thumb">
+                                <a href="<?= URL::to(Page::getByID($product->getPageID())) ?>">
+                                    <?= $product->getImageThumb() ?>
+                                </a>
+                            </td>
+                            <td class="store-cart-product-name">
+                                <?php } else { ?>
+                            <td class="store-cart-product-name" colspan="2">
+                                <?php } ?>
+                                <a href="<?= URL::to(Page::getByID($product->getPageID())) ?>">
+                                    <?= $product->getName() ?>
+                                </a>
 
-                                    <?php if ($cartItem['productAttributes']) { ?>
-                                        <div class="store-cart-list-item-attributes">
-                                            <?php
-                                            foreach ($cartItem['productAttributes'] as $groupID => $valID) {
-
-                                                if (substr($groupID, 0, 2) == 'po') {
-                                                    $groupID = str_replace("po", "", $groupID);
-                                                    $optionvalue = StoreProductOptionItem::getByID($valID);
-
-                                                    if ($optionvalue) {
-                                                        $optionvalue = $optionvalue->getName();
-                                                    }
-                                                } elseif (substr($groupID, 0, 2) == 'pt') {
-                                                    $groupID = str_replace("pt", "", $groupID);
-                                                    $optionvalue = $valID;
-                                                } elseif (substr($groupID, 0, 2) == 'pa') {
-                                                    $groupID = str_replace("pa", "", $groupID);
-                                                    $optionvalue = $valID;
-                                                } elseif (substr($groupID, 0, 2) == 'ph') {
-                                                    $groupID = str_replace("ph", "", $groupID);
-                                                    $optionvalue = $valID;
-                                                }
-
-                                                $optiongroup = StoreProductOption::getByID($groupID);
-                                                ?>
-                                                <?php if ($optionvalue) { ?>
-                                                    <div class="store-cart-list-item-attribute">
-                                                        <span class="store-cart-list-item-attribute-label"><?= ($optiongroup ? h($optiongroup->getName()) : '') ?>:</span>
-                                                        <span class="store-cart-list-item-attribute-value"><?= ($optionvalue ? h($optionvalue) : '') ?></span>
-                                                    </div>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </div>
-                                    <?php } ?>
-                                </td>
-                                <td class="store-cart-item-price">
-                                    <?php if (isset($cartItem['product']['customerPrice'])) { ?>
-                                        <?= StorePrice::format($cartItem['product']['customerPrice']) ?>
-                                    <?php } else { ?>
+                                <?php if ($cartItem['productAttributes']) { ?>
+                                    <div class="store-cart-list-item-attributes">
                                         <?php
-                                        $salePrice = $product->getSalePrice();
-                                        if (isset($salePrice) && $salePrice != "") {
-                                            echo '<span class="sale-price">' . StorePrice::format($salePrice) . '</span>';
-                                        } else {
-                                            echo StorePrice::format($product->getActivePrice());
-                                        }
-                                        ?>
-                                    <?php } ?>
-                                </td>
-                                <td class="store-cart-product-qty text-right">
+                                        foreach ($cartItem['productAttributes'] as $groupID => $valID) {
+
+                                            if (substr($groupID, 0, 2) == 'po') {
+                                                $groupID = str_replace("po", "", $groupID);
+                                                $optionvalue = StoreProductOptionItem::getByID($valID);
+
+                                                if ($optionvalue) {
+                                                    $optionvalue = $optionvalue->getName();
+                                                }
+                                            } elseif (substr($groupID, 0, 2) == 'pt') {
+                                                $groupID = str_replace("pt", "", $groupID);
+                                                $optionvalue = $valID;
+                                            } elseif (substr($groupID, 0, 2) == 'pa') {
+                                                $groupID = str_replace("pa", "", $groupID);
+                                                $optionvalue = $valID;
+                                            } elseif (substr($groupID, 0, 2) == 'ph') {
+                                                $groupID = str_replace("ph", "", $groupID);
+                                                $optionvalue = $valID;
+                                            }
+
+                                            $optiongroup = StoreProductOption::getByID($groupID);
+                                            ?>
+                                            <?php if ($optionvalue) { ?>
+                                                <div class="store-cart-list-item-attribute">
+                                                    <span class="store-cart-list-item-attribute-label"><?= ($optiongroup ? h($optiongroup->getName()) : '') ?>:</span>
+                                                    <span class="store-cart-list-item-attribute-value"><?= ($optionvalue ? h($optionvalue) : '') ?></span>
+                                                </div>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+                            </td>
+                            <td class="store-cart-item-price">
+                                <?php if (isset($cartItem['product']['customerPrice'])) { ?>
+                                    <?= StorePrice::format($cartItem['product']['customerPrice']) ?>
+                                <?php } else { ?>
                                     <?php
-                                    $minQty = $product->getAttribute('minimum_qty');
-                                    $minQty = ($minQty < 1) ? 1 : $minQty;
+                                    $salePrice = $product->getSalePrice();
+                                    if (isset($salePrice) && $salePrice != "") {
+                                        echo '<span class="sale-price">' . StorePrice::format($salePrice) . '</span>';
+                                    } else {
+                                        echo StorePrice::format($product->getActivePrice());
+                                    }
                                     ?>
-                                    <?php if ($product->allowQuantity()) { ?>
+                                <?php } ?>
+                            </td>
+                            <td class="store-cart-product-qty text-right">
+                                <?php
+                                $minQty = $product->getAttribute('minimum_qty');
+                                $minQty = ($minQty < 1) ? 1 : $minQty;
+                                ?>
+                                <?php if ($product->allowQuantity()) { ?>
 
-                                        <input type="hidden" name="instance[]" value="<?= $k ?>"/>
-                                        <input type="number" class="form-control" name="pQty[]"
-                                               min="<?= $minQty ?>" <?= ($product->allowBackOrders() || $product->isUnlimited() ? '' : 'max="' . $product->getQty() . '"'); ?>
-                                               value="<?= $qty ?>" style="width: 65px !important;" onchange="return updateQuantity()">
-                                           <?php } else { ?>
-                                        1
-                                    <?php } ?>
+                                    <input type="hidden" name="instance[]" value="<?= $k ?>"/>
+                                    <input type="number" class="form-control" name="pQty[]"
+                                           min="<?= $minQty ?>" <?= ($product->allowBackOrders() || $product->isUnlimited() ? '' : 'max="' . $product->getQty() . '"'); ?>
+                                           value="<?= $qty ?>" style="width: 65px !important;" onchange="return updateQuantity()">
+                                <?php } else { ?>
+                                    1
+                                <?php } ?>
 
-                                    <a name="action" data-instance="<?= $k ?>"
-                                       class="store-btn-cart-list-remove btn-xs btn btn-danger" type="submit">
-                                        <i class="fa fa-remove" style="color: #fff;"></i><?php //echo t("Remove") ?>
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php
-                        }
+                                <a name="action" data-instance="<?= $k ?>"
+                                   class="store-btn-cart-list-remove btn-xs btn btn-danger" type="submit">
+                                    <i class="fa fa-remove" style="color: #fff;"></i><?php //echo t("Remove") ?>
+                                </a>
+                            </td>
+                        </tr>
+                        <?php
                     }
-                    ?>
+                }
+                ?>
 
                 </tbody>
 
                 <tfoot>
-                    <tr>
-                        <td colspan="2" class="text-left">
+                <tr>
+                    <td colspan="2" class="text-left">
 
-                            <?php /*
+                        <?php /*
                               if (!$u -> isLoggedIn ()) { ?>
 
                               <p>Email ID to get Quote</p><input type="email" name="quote_email" value="">
@@ -159,18 +159,18 @@ global $u;
                               <?php
 
                               } */
-                            ?>
+                        ?>
 
 
 
-                        </td>
-                        <td colspan="2" class="text-right">
-                            <button name="action" value="clear" class="store-btn-cart-list-clear btn btn-default"
-                                    type="submit"><?= t("Clear Cart") ?></button>
-                            <button name="action" value="update" class="store-btn-cart-list-update btn btn-default"
-                                    type="submit" style="display:none;"><?= t("Update") ?></button>
-                        </td>
-                    </tr>
+                    </td>
+                    <td colspan="2" class="text-right">
+                        <button name="action" value="clear" class="store-btn-cart-list-clear btn btn-default"
+                                type="submit"><?= t("Clear Cart") ?></button>
+                        <button name="action" value="update" class="store-btn-cart-list-update btn btn-default"
+                                type="submit" style="display:none;"><?= t("Update") ?></button>
+                    </td>
+                </tr>
                 </tfoot>
             </table>
         </form>
@@ -203,7 +203,7 @@ global $u;
                             <textarea name="address" class="form-control" id="legal_issue" cols="50" rows="5" required style="width:100%"></textarea>
                         </div>
                         <div class="form-actions" style="padding-top:15px">
-                            <button name="action" style="background-color:#000;color:#fff;" value="quote" class="store-btn-cart-list-clear btn getquotesubmit"
+                            <button name="action" style="background-color:#ec7c05;color:#fff;font-weight: bolder;" value="quote" class="store-btn-cart-list-clear btn getquotesubmit"
                                     type="submit"><?= t("Submit") ?></button>
                         </div>
                     </div>
@@ -248,7 +248,7 @@ global $u;
         </p>
 
         <?php if ($shippingEnabled) { ?>
-        <!--            <p class="store-cart-page-shipping text-right"><strong><?= t("Shipping") ?>:</strong>
+            <!--            <p class="store-cart-page-shipping text-right"><strong><?= t("Shipping") ?>:</strong>
                         <span id="store-shipping-total">
             <?= $shippingtotal !== false ? ($shippingtotal > 0 ? StorePrice::format($shippingtotal) : t('No Charge')) : t('to be determined'); ?>
                         </span></p>-->
@@ -278,31 +278,31 @@ global $u;
                     ?>
                     <strong class="store-cart-grand-total-label"><?= ($tax['name'] ? $tax['name'] : t("Tax")) ?>:</strong>
                     <span class="store-cart-grand-total-value"><?= StorePrice::format($tax['taxamount']); ?></span>
-                </li>
-            <?php
+                    </li>
+                    <?php
+                }
             }
+            echo '</p>';
         }
-        echo '</p>';
-    }
-    ?>
+        ?>
 
-    <p class="store-cart-page-cart-total text-right">
-        <strong class="store-cart-grand-total-label"><?= t("Total") ?>:</strong>
-        <span class="store-cart-grand-total-value"><?= StorePrice::format($total) ?></span>
-    </p>    
-    <!--        <p class="text-right">
-        <small>*Orders below <strong>AED 500</strong>, Delivery charge <strong>AED 50 </strong>is applied.</small>
-    </p>-->
+        <p class="store-cart-page-cart-total text-right">
+            <strong class="store-cart-grand-total-label"><?= t("Total") ?>:</strong>
+            <span class="store-cart-grand-total-value"><?= StorePrice::format($total) ?></span>
+        </p>
+        <!--        <p class="text-right">
+            <small>*Orders below <strong>AED 500</strong>, Delivery charge <strong>AED 50 </strong>is applied.</small>
+        </p>-->
 
-    <div class="store-cart-page-cart-links pull-right">
-        <a class="store-btn-cart-page-checkout btn btn-primary"
-           href="<?= \URL::to('/checkout') ?>"><?= t('Checkout') ?>
-        </a>
-    </div>        
-<?php } else { ?>
-    <p class="alert alert-info"><?= t('Your cart is empty'); ?></p>
-    <a href="/product">Continue Shopping</a>
-<?php } ?>
+        <div class="store-cart-page-cart-links pull-right">
+            <a class="store-btn-cart-page-checkout btn btn-primary"
+               href="<?= \URL::to('/checkout') ?>"><?= t('Checkout') ?>
+            </a>
+        </div>
+    <?php } else { ?>
+        <p class="alert alert-info"><?= t('Your cart is empty'); ?></p>
+        <a href="/product">Continue Shopping</a>
+    <?php } ?>
 
 </div>
 <script type="text/javascript">
@@ -332,7 +332,7 @@ global $u;
     });
 
 
-<?php /* $('#myModal').on('hidden.bs.modal', function () {
+    <?php /* $('#myModal').on('hidden.bs.modal', function () {
   $('.modal-content').find('input:text, input[name="email"], input:password,input:hidden, input:file, select, textarea').val('');
   $('.modal-form').show();
   $('.modal-body h2').hide();
@@ -352,17 +352,17 @@ global $u;
     .box-inner{
         width: 400px;
         padding: 10px;
-        border: 1px solid #000;	
+        border: 1px solid #000;
     }
 
     @media only screen and (min-width:320px) and (max-width:425px) {
         .box-inner{
             width: 250px;
             padding: 10px;
-            border: 1px solid #000;	
+            border: 1px solid #000;
         }
         .form-control{
-            padding: 6px 3px;	
+            padding: 6px 3px;
         }
     }
 
@@ -379,15 +379,16 @@ global $u;
         });
     }, 2000);
 
-    $("#qte").submit(function () {
-        jQuery.support.cors = true;
-        var formData = '631421_81406pi_631421_81406=' + $("#firstname").val();
-        formData += '&631421_81408pi_631421_81408=' + $("#lname").val();
-        formData += '&631421_81410pi_631421_81410=' + $("#cname").val();
-        formData += '&631421_81412pi_631421_81412=' + $("#email").val();
-        formData += '&631421_81414pi_631421_81414=' + $("#pnumber").val();
-        formData += '&631421_81416pi_631421_81416=' + $("#address").val();
-        $.post('https://www2.duconodl.com/l/631421/2020-07-21/2zn55', formData, function (res) {
-        });
-    });
+    /* $("#qte").submit(function () {
+         jQuery.support.cors = true;
+         var formData = '631421_81406pi_631421_81406=' + $("#firstname").val();
+         formData += '&631421_81408pi_631421_81408=' + $("#lname").val();
+         formData += '&631421_81410pi_631421_81410=' + $("#cname").val();
+         formData += '&631421_81412pi_631421_81412=' + $("#email").val();
+         formData += '&631421_81414pi_631421_81414=' + $("#pnumber").val();
+         formData += '&631421_81416pi_631421_81416=' + $("#address").val();
+         $.post('https://www2.duconodl.com/l/631421/2020-07-21/2zn55', formData, function (res) {
+         });
+     });
+     */
 </script>
