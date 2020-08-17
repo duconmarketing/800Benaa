@@ -149,15 +149,15 @@ class Customer
             $ret .= $city;
         }
         if ($state_province) {
-            $ret .= ", ";
+           // $ret .= ", ";
         }
         if ($state_province) {
 
             $val = \Core::make('helper/lists/states_provinces')->getStateProvinceName($state_province, $country);
             if ($val == '') {
-                $ret .= $state_province;
+                $ret .= str_replace('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','',$state_province);
             } else {
-                $ret .= $val;
+                $ret .= str_replace('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','',$val);
             }
         }
         if ($postal_code) {
