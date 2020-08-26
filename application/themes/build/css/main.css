@@ -834,7 +834,7 @@ body {
     margin-right: 7px;
 }
 .cover .product_detail .pro_det p {
-    font-weight: bold;
+   /* font-weight: bold; */
     font-size: 15px;
 }
 .cover .product_detail .pro_det .add_cart {

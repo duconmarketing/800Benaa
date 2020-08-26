@@ -571,7 +571,11 @@ class Product
 
     public function getName()
     {
-        return $this->pName;
+        $patterns = '/(?<=\d|\)|[a-zA-Z])x(?=\d)/i';
+        $replacements = ' x ';
+        $string = $this->pName;
+        $string1 = preg_replace($patterns, $replacements, $string);
+        return $string1;
     }
     public function getSKU()
     {
