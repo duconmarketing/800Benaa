@@ -571,6 +571,7 @@ class Product
 
     public function getName()
     {
+        // return $this->pName;
         $patterns = '/(?<=\d|\)|[a-zA-Z])x(?=\d)/i';
         $replacements = ' x ';
         $string = $this->pName;
@@ -603,7 +604,12 @@ class Product
     }
     public function getDetail()
     {
-        return $this->pDetail;
+        // return $this->pDetail;
+        $patterns = '/(?<=\d|\)|[a-zA-Z])x(?=\d)/i';
+        $replacements = ' x ';
+        $string = $this->pDetail;
+        $string1 = preg_replace($patterns, $replacements, $string);
+        return $string1;
     }
     public function getPrice()
     {

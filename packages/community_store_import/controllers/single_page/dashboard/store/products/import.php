@@ -271,7 +271,7 @@ class Import extends DashboardPageController
     private function update($p, $row)
     {
         if ($row['psku']) $p->setSKU($row['psku']);
-//        if ($row['pname']) $p->setName($row['pname']);
+      if ($row['pname']) $p->setName($row['pname']);
 //        if ($row['pdesc']) $p->setDescription($row['pdesc']);
 ////        if ($row['pdetail']) $p->setDetail($row['pdetail']);
 //        if ($row['pfeatured']) $p->setIsFeatured($row['pfeatured']);
@@ -284,7 +284,7 @@ class Import extends DashboardPageController
 //        if ($row['pautocheckout']) $p->setAutoCheckout($row['pautocheckout']);
 //        if ($row['pexclusive']) $p->setIsExclusive($row['pexclusive']);
 
-        if ($row['pprice']) $p->setPrice($row['pprice']);
+//        if ($row['pprice']) $p->setPrice($row['pprice']);
 //        if ($row['psaleprice']) $p->setSalePrice($row['psaleprice']);
 //        if ($row['ppricemaximum']) $p->setPriceMaximum($row['ppricemaximum']);
 //        if ($row['ppriceminimum']) $p->setPriceMinimum($row['ppriceminimum']);
@@ -314,7 +314,7 @@ class Import extends DashboardPageController
 //        StoreProductImage::addImagesForProduct($row, $p);
 
          //Product attributes
-        $this->setAttributes($p, $row);
+//        $this->setAttributes($p, $row);
 
         // Product groups
 //        $this->setGroups($p, $row);

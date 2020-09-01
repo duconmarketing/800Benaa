@@ -10,6 +10,7 @@ use Config;
 use Page;
 use UserInfo;
 use Session;
+use Loader;
 use Doctrine\Common\Collections\ArrayCollection;
 use Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey;
 use Concrete\Package\CommunityStore\Src\CommunityStore\Cart\Cart as StoreCart;
@@ -113,7 +114,7 @@ class Order
     {
         $this->orderItems = new ArrayCollection();
     }
-    
+
     public function setCustomerID($cID)
     {
         $this->cID = $cID;
@@ -526,7 +527,7 @@ class Order
             if ($paymentMethodUsed) {
                 // if the payment method actually is a payment (as opposed to an invoice), mark order as paid
                 if ($paymentMethodUsed->getMethodController()->markPaid()) {
-                   $this->completePayment($sameRequest);
+                    $this->completePayment($sameRequest);
                 }
             }
         }
@@ -542,8 +543,10 @@ class Order
         $this->sendOrderReceipt();
 
         // notifications
+        $this->generatePdfForNotifications();
+        sleep(2);
         $this->sendNotifications();
-
+        sleep(20);
         return $this;
     }
 
@@ -707,6 +710,11 @@ class Order
         }
     }
 
+    public function generatePdfForNotifications(){
+        $mycart = StoreCart::getCart();
+        Loader::Element('print_spa/notification_pdf', array('cart' => $mycart,'order' => $this));
+    }
+
     public function sendNotifications() {
         $mh = new MailService();
 
@@ -751,7 +759,20 @@ class Order
             $mh->addParameter('orderChoicesAttList', $orderChoicesAttList);
             $mh->addParameter("order", $this);
             $mh->load("new_order_notification", "community_store");
+
+            $ordId = $this->getOrderId();
+            $file_name = 'online_order_'. $ordId . '.pdf';
+
+           // Loader::library("file/importer");
+           // $fi = new FileImporter();
+            $fi = new \Concrete\Core\File\Importer();
+            $imgurl='application/files/tempUploads/'.$file_name;
+            // $fi->import($imgurl); // This returns a new FileObject
+            $newFile = $fi->import($imgurl);
+            $attach = $newFile->getFile();
+            $mh->addAttachment($attach);
             $mh->sendMail();
+            // unlink('application/files/tempUploads/'.$file_name);
         }
     }
 
