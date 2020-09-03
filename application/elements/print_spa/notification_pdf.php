@@ -281,7 +281,7 @@ ob_start();
     <?php
     $paid = $order->getPaid();
     if ($paid) {
-        $status = t('Paid') . ' - ' . $dh->formatDateTime($paid);
+        $status = t('Paid');
     } else {
         $status = t('Unpaid');
     }
