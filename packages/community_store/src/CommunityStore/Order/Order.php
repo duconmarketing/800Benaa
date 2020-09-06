@@ -546,7 +546,7 @@ class Order
         $this->generatePdfForNotifications();
         sleep(2);
         $this->sendNotifications();
-        sleep(20);
+        sleep(2);
         return $this;
     }
 
@@ -763,8 +763,6 @@ class Order
             $ordId = $this->getOrderId();
             $file_name = 'online_order_'. $ordId . '.pdf';
 
-           // Loader::library("file/importer");
-           // $fi = new FileImporter();
             $fi = new \Concrete\Core\File\Importer();
             $imgurl='application/files/tempUploads/'.$file_name;
             // $fi->import($imgurl); // This returns a new FileObject
@@ -772,7 +770,7 @@ class Order
             $attach = $newFile->getFile();
             $mh->addAttachment($attach);
             $mh->sendMail();
-            // unlink('application/files/tempUploads/'.$file_name);
+            unlink('application/files/tempUploads/'.$file_name);
         }
     }
 

@@ -201,12 +201,11 @@ $date7 = date('M d, Y', $date7);
     <tr>
         <td valign="left" style="text-align:left">
             <label>To:</label><br>
-            <label>Attn: MR/MS. <?php echo $postValues['firstname'] . ' ' . $postValues['lname'] ?>,</label><br>
-            <label><?php echo $postValues['cname'] ?></label><br>
-            <label><?php echo 'TRN :'.$postValues['trnnumber']; ?></label><br>
-            <label><?php echo $postValues['address'] ?></label><br>
+            <label>Attn: Mr/Ms. <?php echo $postValues['firstname'] . ' ' . $postValues['lname'] ?>,</label><br>
             <label>Contact Number: <?php echo $postValues['pnumber'] ?></label><br>
-            <label>Email: <?php echo $postValues['email'] ?></label>
+            <label>Email: <?php echo $postValues['email'] ?></label><br>
+            <label>Company: <?php echo $postValues['cname'] ?></label><br>
+            <label>Address: <?php echo $postValues['address'] ?></label>
         </td>
         <td valign="right" style="text-align:right">
             <label>Date:</label>&nbsp;<?php echo $date; ?><br>
@@ -415,25 +414,30 @@ $date7 = date('M d, Y', $date7);
     $pdf->Image(DIR_BASE . '/application/elements/print_spa/sales-sign.png',13, '', 185, 0, 'PNG', '', 'L', true, 300, '', false, false, 0, false, false, FALSE);
     $pdf1->Image(DIR_BASE . '/application/elements/print_spa/sales-sign.png',13, '', 185, 0, 'PNG', '', 'L', true, 300, '', false, false, 0, false, false, FALSE);               
     
-    $pdfname = $postValues['firstname'] . '_' . $postValues['lname'] . '_' . date('Y-m-d-h-i-s') . '.pdf';
+    $pdfname = 'Quotation EGL' . date('Y-m-d-h-i-s') . '.pdf';
     //
     $pdf->Output($pdfname, 'D');
     $pdf1->Output('application/quotation/' . $pdfname, 'F');
 
     if (file_exists('application/quotation/' . $pdfName)) {
         $mh = new MailService();
-        $mh->to('marketing@duconind.com,sales@800benaa.com,maged@stemfze.com,akhalil@duconind.com');
-//        $mh->to('sabinonweb@gmail.com');
+ //       $mh->to('marketing@duconind.com,sales@800benaa.com,maged@stemfze.com,akhalil@duconind.com');
+ //       $mh->to('sabinonweb@gmail.com');
+        $mh->to('toafsar@gmail.com');
+        $mh->cc('afsarlko@gmail.com');
         $mh->from('lead@800benaa.com');
-        $mh->setBody('Greetings From Ducon Industries FZCO, Hello Mr/Ms.' . $postValues['firstname'] . ' ' . $postValues['lname'] . ' Please find the attched Quotation with this email');
-        $mh->setSubject(t('Live quotation'));
+        $mail_body = '<html><body><b>Dear Mr. Maged,</b><br /><br />Please find the details of the Online Quotation, Kindly confirm the product availability for the same.<br /><br />Regards,<br />Ducon Team</body></html>';
+        $mh->setBodyHTML($mail_body);
+       // $mh->setBody('Greetings From Ducon Industries FZCO, Hello Mr/Ms.' . $postValues['firstname'] . ' ' . $postValues['lname'] . ' Please find the attched Quotation with this email');
+        $mh->setSubject(t('New Quotation Notification #EGL' . date('Y-m-d-h-i-s') . ''));
         $afiles = array();
         $pdffilepath = DIR_BASE . '/application/quotation/' . $pdfname;
         $afiles[0]['path'] = $pdffilepath;
         $afiles[0]['mime'] = 'application/pdf';
         $afiles[0]['name'] = basename($pdffilepath);
         $mh->addAttachments($afiles);
+        sleep(2);
         $mh->sendMail();
-        unlink(DIR_BASE . '/application/quotation/' . $pdfname);
+        //unlink(DIR_BASE . '/application/quotation/' . $pdfname);
     }
 }

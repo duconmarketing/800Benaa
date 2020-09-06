@@ -8,7 +8,6 @@ use \Concrete\Package\CommunityStore\Src\CommunityStore\Product\ProductOption\Pr
 use \Concrete\Package\CommunityStore\Src\CommunityStore\Utilities\Calculator as StoreCalculator;
 use \Application\Src\MailExtended\MailService;
 
-//die('asdasdasd');
 require('tcpdf/config/lang/eng.php');
 require('tcpdf/config/tcpdf_config.php');
 require('tcpdf/config/tcpdf_config_alt.php');
@@ -305,22 +304,4 @@ $pdf->writeHTML($crecover);
 $pdf->writeHTML($totHtml);
 $pdfname = 'application/files/tempUploads/online_order_'. $ordId . '.pdf';
 $pdf->Output($pdfname, 'F');
-/*
-sleep(5);
-    if (file_exists('application/quotation/' . $pdfName)) {
-        $mh = new MailService();
-        $mh->to('toafsar@gmail.com');
-        $mh->from('lead@800benaa.com');
-        $mh->setBody('Greetings From Ducon Industries FZCO. Please find the attached online order with this email.');
-        $mh->setSubject(t('Online Order'));
-        $afiles = array();
-        $pdffilepath = DIR_BASE . '/' . $pdfname;
-        $afiles[0]['path'] = $pdffilepath;
-        $afiles[0]['mime'] = 'application/pdf';
-        $afiles[0]['name'] = basename($pdffilepath);
-        $mh->addAttachments($afiles);
-        $mh->sendMail();
-        //unlink(DIR_BASE . '/' . $pdfname);
-    }
-*/
 }
