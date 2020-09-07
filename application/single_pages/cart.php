@@ -196,7 +196,7 @@ global $u;
                         <input name="email" id="email" class="form-control" type="email" value="" required style="width:100%">
 
                         <label class="control-label" for="pnumber"> Contact Number <span class="text-muted small" style="font-weight: normal">*</span> </label>
-                        <input name="pnumber" id="pnumber" class="form-control" type="number" value="" required style="width:100%">
+                        <input name="pnumber" id="pnumber" class="form-control" type="text" value="" required style="width:100%">
 
                         <div class="form-group field field-textarea ">
                             <label class="control-label" for="address"> Address <span class="text-muted small" style="font-weight: normal">*</span></label>
