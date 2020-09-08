@@ -97,7 +97,7 @@ global $u;
                 text-decoration: none;
                 display: inline-block;
                 font-size: 20px;
-                margin: 4px 2px;
+                margin: 0px 2px;
                 cursor: pointer;
                 -webkit-transition-duration: 0.4s; /* Safari */
                 transition-duration: 0.4s;
@@ -284,7 +284,8 @@ global $u;
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                           <h4 class="modal-title">Fast Track Order</h4>
-                          <small>Drop us your Number and our Team will call you for the Order</small>
+                          <small>Drop us your Number and our Team will call you for the Order</small><br/>
+                          <small>... زودنا برقمك وسوف نتواصل معك في أقرب وقت ممكن</small>
                         </div>
                         <div class="modal-body">
                             <span class="modal-succ-msg" style="display:none;">
@@ -295,12 +296,6 @@ global $u;
                                 <input type=hidden name="oid" value="00D0O000000Z7K2">
                                 <input type=hidden name="retURL" value="https://www.800benaa.com/">
 
-                                <!--  ----------------------------------------------------------------------  -->
-                                <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
-                                <!--  these lines if you wish to test in debug mode.                          -->
-                                <!--  <input type="hidden" name="debug" value=1>                              -->
-                                <!--  <input type="hidden" name="debugEmail" value="bd@duconodl.com">         -->
-                                <!--  ----------------------------------------------------------------------  -->
                                 <input id="recordType" name="recordType" type="hidden" value="0121r000000nbcQ" />
                                 <input id="00N1r00000KB5yK" name="00N1r00000KB5yK" type="hidden" value="Prospect - Benaa" />
                                 
@@ -315,11 +310,11 @@ global $u;
                                     <span id="phone-info2" style="font-size:.8em;color: #FF6600;letter-spacing:1px;padding-left:5px;"></span>
                                 </div>
                                 <input type="submit" name="submit" value="Call Me" class="button-leadform" style="background-color: #ec7c05;color: #fff;">
-
                             </form>
                             
                             <br />
-                            Or send your inquiry on <a href="mailto:sales@800benaa.com">sales@800benaa.com</a>
+                            Or send your inquiry on <a href="mailto:sales@800benaa.com">sales@800benaa.com</a> <br/>
+                            <a href="mailto:sales@800benaa.com">sales@800benaa.com</a> أو ارسل استفسارك على بريدنا االلكتروني
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
