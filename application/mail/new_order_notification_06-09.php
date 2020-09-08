@@ -32,7 +32,7 @@ ob_start();
             <tr>
                 <td width="50%" style="vertical-align: top; padding: 0; padding-right: 10px;padding-left: 10px;">
                     <p style="margin: 3px 0px;font-weight: bold;font-size: 18px;">Ducon Industries Fzco</p>
-                    <p style="line-height: 18px;margin: 3px 0px;">(TRN: 100386329500003)</p>  
+                    <p style="line-height: 18px;margin: 3px 0px;">(TRN: 100386329500003)</p>
                     <!--<p style="line-height: 18px;margin: 3px 0px;">National Industries Park,<br/>TP010225,P.O Box 262394,<br/>Dubai,United Arab Emirates</p>-->
                     <p style="margin: 3px 0px;"><strong>Phone: </strong>+971 4 8806996</p>
                     <p style="margin: 3px 0px;"><strong>Fax: </strong>+971 4 8806980</p>
@@ -62,7 +62,7 @@ ob_start();
                     </p>
                 </td>
                 <td style="vertical-align: top; padding: 0;padding: 10px;text-align: right;">
-                    <p style="margin: 3px 0px;"><strong><?= t("Order") ?>#: <?= $order->getOrderID() ?> | <?= t('Order placed date'); ?>: <?= $dh->formatDateTime($order->getOrderDate()) ?></strong></p>                   
+                    <p style="margin: 3px 0px;"><strong><?= t("Order") ?>#: <?= $order->getOrderID() ?> | <?= t('Order placed date'); ?>: <?= $dh->formatDateTime($order->getOrderDate()) ?></strong></p>
 
                     <?php if (!empty($orderChoicesAttList)) { ?>
                         <h3><?= t("Other Choices") ?></h3>
@@ -113,9 +113,9 @@ ob_start();
                     <th style="border-bottom: 1px solid #aaa; text-align: left; padding-right: 10px;padding-left:10px; "><?= t('Product Name') ?></th>
                     <th style="border-bottom: 1px solid #aaa; text-align: center; padding-right: 10px;"><?= t('Product Code') ?></th>
                     <th style="border-bottom: 1px solid #aaa; text-align: center; padding-right: 10px;"><?= t('Qty') ?></th>
-                    <th style="border-bottom: 1px solid #aaa; text-align: right; padding-right: 10px;"><?= t('Price') ?></th>               
+                    <th style="border-bottom: 1px solid #aaa; text-align: right; padding-right: 10px;"><?= t('Price') ?></th>
                     <th style="border-bottom: 1px solid #aaa; text-align: right; padding-right: 10px;"><?= t('VAT %') ?></th>
-                    <th style="border-bottom: 1px solid #aaa; text-align: right;padding-right: 5px;"><?= t('Subtotal') ?></th>  
+                    <th style="border-bottom: 1px solid #aaa; text-align: right;padding-right: 5px;"><?= t('Subtotal') ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -217,7 +217,7 @@ ob_start();
             </table>
 
         <?php } ?>
-            
+
             <?php if ($order->isShippable()) { ?>
             <table border="0" width="100%" style="border-collapse: collapse;">
                 <tr>
@@ -231,12 +231,12 @@ ob_start();
                         </table>
                     </td>
                 </tr>
-            </table>          
+            </table>
             <?php } ?>
 
         <table border="0" width="100%" style="border-collapse: collapse;">
             <tr>
-                <td width="60%" style="vertical-align: top; padding: 10px;"></td> 
+                <td width="60%" style="vertical-align: top; padding: 10px;"></td>
                 <td width="40%" style="vertical-align: top; padding: 0px;">
                     <table border="0" width="100%" style="border-collapse: collapse;padding: 5px;"><tr>
                             <?php foreach ($order->getTaxes() as $tax) { ?>
@@ -272,7 +272,7 @@ ob_start();
             </thead>
             <tbody style="border-bottom:1px solid #000;" >
                 <tr>
-                    <?php foreach ($order->getTaxes() as $tax) { ?> 
+                    <?php foreach ($order->getTaxes() as $tax) { ?>
                         <td style="vertical-align: top; padding: 5px 10px 5px 0;text-align: center;border-bottom: 1px solid #000;">VAT TAX UAE @ 5%</td>
                         <td style="vertical-align: top; padding: 5px 10px 5px 0;text-align: center;border-bottom: 1px solid #000;"><?= ltrim(StorePrice::format($tax['amount'] ? $tax['amount'] : $tax['amountIncluded']), "AED") ?></td>
                         <td style="vertical-align: top; padding: 5px 10px 5px 0;text-align: center;border-bottom: 1px solid #000;"><?= StorePrice::format($order->getTotal()) ?></td>

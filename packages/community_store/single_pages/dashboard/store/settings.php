@@ -211,8 +211,13 @@
                     <h3><?= t('Notification Emails');?></h3>
 
                     <div class="form-group">
-                        <?= $form->label('notificationEmails',t('Send order notification to email %sseparate multiple emails with commas%s', '<small class="text-muted">','</small>')); ?>
+                        <?= $form->label('notificationEmails',t('TO, %sseparate multiple emails with commas%s', '<small class="text-muted">','</small>')); ?>
                         <?= $form->text('notificationEmails',Config::get('community_store.notificationemails'), array('placeholder'=>t('Email Address')));?>
+                    </div>
+
+                    <div class="form-group">
+                        <?= $form->label('notificationEmails2',t('CC, %sseparate multiple emails with commas%s', '<small class="text-muted">','</small>')); ?>
+                        <?= $form->text('notificationEmails2',Config::get('community_store.notificationemails2'), array('placeholder'=>t('Email Address')));?>
                     </div>
 
                     <h4><?= t('Emails Sent From');?></h4>
