@@ -285,7 +285,7 @@ global $u;
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                           <h4 class="modal-title">Fast Track Order</h4>
                           <small>Drop us your Number and our Team will call you for the Order</small><br/>
-                          <small>... زودنا برقمك وسوف نتواصل معك في أقرب وقت ممكن</small>
+                          <small>... ضع رقمك وسنتواصل معك في أقرب وقت</small>
                         </div>
                         <div class="modal-body">
                             <span class="modal-succ-msg" style="display:none;">
