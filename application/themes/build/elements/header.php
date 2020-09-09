@@ -314,7 +314,7 @@ global $u;
                             
                             <br />
                             Or send your inquiry on <a href="mailto:sales@800benaa.com">sales@800benaa.com</a> <br/>
-                            <a href="mailto:sales@800benaa.com">sales@800benaa.com</a> أو ارسل استفسارك على بريدنا االلكتروني
+                            <a href="mailto:sales@800benaa.com">sales@800benaa.com</a> أو ارسل استفسارك على بريدنا الالكتروني
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
