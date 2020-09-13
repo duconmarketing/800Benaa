@@ -216,7 +216,7 @@
                     </div>
 
                     <div class="form-group">
-                        <?= $form->label('notificationEmails2',t('CC, %sseparate multiple emails with commas%s', '<small class="text-muted">','</small>')); ?>
+                        <?= $form->label('notificationEmails2',t('CC (for Order and Notification), %sseparate multiple emails with commas%s', '<small class="text-muted">','</small>')); ?>
                         <?= $form->text('notificationEmails2',Config::get('community_store.notificationemails2'), array('placeholder'=>t('Email Address')));?>
                     </div>
 
