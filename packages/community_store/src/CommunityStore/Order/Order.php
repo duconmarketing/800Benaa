@@ -789,6 +789,7 @@ class Order
         $fromName = Config::get('community_store.emailalertsname');
 
         $fromEmail = Config::get('community_store.emailalerts');
+        $adminCcEmail = Config::get('community_store.notificationemails2');
         if (!$fromEmail) {
             $fromEmail = "store@" . $_SERVER['SERVER_NAME'];
         }
@@ -804,7 +805,7 @@ class Order
         } else {
             $mh->to($this->getAttribute('email'));
         }
-        $mh->cc('sabinchacko03@gmail.com');
+        $mh->cc($adminCcEmail);
 
         $pmID = $this->getPaymentMethodID();
 
