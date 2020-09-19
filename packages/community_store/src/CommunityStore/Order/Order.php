@@ -546,13 +546,12 @@ class Order
         $this->generatePdfForNotifications();
         sleep(2);
         $this->sendNotifications();
-        sleep(2);
+        //sleep(5);
         return $this;
     }
 
     public function completePayment($sameRequest = false) {
         $this->setPaid(new \DateTime());
-
         // create payment event and dispatch
         $event = new StoreOrderEvent($this);
         Events::dispatch('on_community_store_payment_complete', $event);
@@ -789,6 +788,9 @@ class Order
         $fromName = Config::get('community_store.emailalertsname');
 
         $fromEmail = Config::get('community_store.emailalerts');
+        $ccEmailStr = Config::get('community_store.notificationemails2');
+        $ccEmailArr = explode(',',$ccEmailStr);
+
         if (!$fromEmail) {
             $fromEmail = "store@" . $_SERVER['SERVER_NAME'];
         }
@@ -804,8 +806,12 @@ class Order
         } else {
             $mh->to($this->getAttribute('email'));
         }
-        $mh->cc('sabinchacko03@gmail.com');
 
+        foreach ($ccEmailArr as $ccEmail) {
+            if ($ccEmail) {
+                $mh->cc($ccEmail);
+            }
+        }
         $pmID = $this->getPaymentMethodID();
 
         if ($pmID) {
