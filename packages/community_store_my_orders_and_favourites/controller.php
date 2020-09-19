@@ -38,7 +38,6 @@ class controller extends package {
 	public function installSinglepages($pkg){
 		self::installpage('/account/my_orders',$pkg);
 		//self::installpage('/account/my_favourites',$pkg);
-		
 	}
 	
 	public function installpage($path,$pkg){

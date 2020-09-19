@@ -213,23 +213,44 @@ if ($order) {
         ?>
         </tbody>
     </table>
-        <?php if ($order->isShippable()) { ?>
-            <strong><?= t("Shipping") ?>:</strong>  <?= StorePrice::format($order->getShippingTotal()) ?><br><strong><?= t("Shipping Location") ?>: </strong><?= $order->getShippingMethodName() ?>
-            <?php
-            $shippingInstructions = $order->getShippingInstructions();
-            if ($shippingInstructions) {
-                ?>
-                <strong><?= t("Delivery Instructions") ?>: </strong><?= $shippingInstructions ?>
-            <?php } ?>
-        <?php } ?>
-<?php
-$crecover = ob_get_contents();
-ob_clean();
-ob_start();
-?>
+
+    <?php
+    $crecover = ob_get_contents();
+    ob_clean();
+    ob_start();
+    ?>
     <table border="0" width="100%" style="border-collapse: collapse;">
+        <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
         <tr>
-            <td width="60%"></td>
+            <td width="60%" valign="top"><?php if ($order->isShippable()){?><strong><?= t("Shipping") ?>:</strong>  <?= StorePrice::format($order->getShippingTotal()) ?><br><strong><?= t("Shipping Location") ?>: </strong><?= $order->getShippingMethodName() ?>
+                    <?php
+                    $shippingInstructions = $order->getShippingInstructions();
+                    if ($shippingInstructions) {
+                        ?>
+                        <strong><?= t("Delivery Instructions") ?>: </strong><?= $shippingInstructions ?>
+                    <?php } ?>
+                <?php } ?>
+                <?php if ($order->getTotal() > 0) { ?>
+                    <br><strong><?= t("Payment Method") ?>: </strong><?= $order->getPaymentMethodName() ?><br />
+                    <?php
+                    $paid = $order->getPaid();
+                    if ($paid) {
+                        $status = t('Paid');
+                    } else {
+                        $status = t('Unpaid');
+                    }
+                    ?>
+                    <strong><?= t("Payment Status") ?>:</strong> <?= $status; ?><br>
+                    <?php
+                    $transactionReference = $order->getTransactionReference();
+                    if ($transactionReference) {
+                        ?>
+                        <strong><?= t("Transaction Reference") ?>: </strong><?= $transactionReference ?>
+                    <?php } ?>
+                <?php } else { ?>
+                    <strong><?= t('Free Order') ?></strong>
+                <?php } ?>
+            </td>
             <td width="40%">
                 <table border="0" width="100%">
                     <tr>
@@ -250,16 +271,16 @@ ob_start();
                         ?>
                         <br/>
                     <?php } else { ?>
-                    <tr>
-                        <td width="60%" style="vertical-align: top; padding: 2px;;text-align: right;"><strong>Discount 0% :</strong></td>
-                        <td width="40%" style="vertical-align: top; padding: 2px;;text-align: right;font-weight: bold;"><?php echo '0.00'; ?></td>
-                    </tr>
+                        <tr>
+                            <td width="60%" style="vertical-align: top; padding: 2px;;text-align: right;"><strong>Discount 0% :</strong></td>
+                            <td width="40%" style="vertical-align: top; padding: 2px;;text-align: right;font-weight: bold;"><?php echo '0.00'; ?></td>
+                        </tr>
                     <?php } ?>
                     <?php if ($order->isShippable()) { ?>
-                    <tr>
-                        <td width="60%" style="vertical-align: top; padding: 2px;;text-align: right;"><strong><?= t("Shipping Charge") ?> :</strong></td>
-                        <td width="40%" style="vertical-align: top; padding: 2px;;text-align: right;font-weight: bold;"><?= StorePrice::format($order->getShippingTotal()) ?></td>
-                    </tr>
+                        <tr>
+                            <td width="60%" style="vertical-align: top; padding: 2px;;text-align: right;"><strong><?= t("Shipping Charge") ?> :</strong></td>
+                            <td width="40%" style="vertical-align: top; padding: 2px;;text-align: right;font-weight: bold;"><?= StorePrice::format($order->getShippingTotal()) ?></td>
+                        </tr>
                     <?php } ?>
                     <?php foreach ($order->getTaxes() as $tax) { ?>
                         <tr>
@@ -275,33 +296,13 @@ ob_start();
             </td>
         </tr>
     </table>
-<?php if ($order->getTotal() > 0) { ?>
-    <strong><?= t("Payment Method") ?>: </strong><?= $order->getPaymentMethodName() ?><br />
     <?php
-    $paid = $order->getPaid();
-    if ($paid) {
-        $status = t('Paid');
-    } else {
-        $status = t('Unpaid');
-    }
-    ?>
-    <strong><?= t("Payment Status") ?>:</strong> <?= $status; ?><br>
-    <?php
-    $transactionReference = $order->getTransactionReference();
-    if ($transactionReference) {
-        ?>
-        <strong><?= t("Transaction Reference") ?>: </strong><?= $transactionReference ?>
-    <?php } ?>
-<?php } else { ?>
-    <strong><?= t('Free Order') ?></strong>
-<?php } ?>
-<?php
-$totHtml = ob_get_contents();
-ob_clean();
+    $totHtml = ob_get_contents();
+    ob_clean();
 
-$pdf->writeHTML($cssstyle);
-$pdf->writeHTML($crecover);
-$pdf->writeHTML($totHtml);
-$pdfname = 'application/files/tempUploads/online_order_'. $ordId . '.pdf';
-$pdf->Output($pdfname, 'F');
+    $pdf->writeHTML($cssstyle);
+    $pdf->writeHTML($crecover);
+    $pdf->writeHTML($totHtml);
+    $pdfname = 'application/files/tempUploads/online_order_'. $ordId . '.pdf';
+    $pdf->Output($pdfname, 'F');
 }
