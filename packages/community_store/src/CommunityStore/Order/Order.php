@@ -788,38 +788,22 @@ class Order
         $fromName = Config::get('community_store.emailalertsname');
 
         $fromEmail = Config::get('community_store.emailalerts');
-<<<<<<< HEAD
+
         $ccEmailStr = Config::get('community_store.notificationemails2');
         $ccEmailArr = explode(',',$ccEmailStr);
-=======
-        $adminCcEmail = Config::get('community_store.notificationemails2');
-        $ccEmailArray = explode(',',$adminCcEmail);
->>>>>>> c4651b46a6667950971bcc8acf3e488e4ac79cb7
-
         if (!$fromEmail) {
             $fromEmail = "store@" . $_SERVER['SERVER_NAME'];
         }
-
         if ($fromName) {
             $mh->from($fromEmail, $fromName);
         } else {
             $mh->from($fromEmail);
         }
-
         if ($email) {
             $mh->to($email);
         } else {
             $mh->to($this->getAttribute('email'));
         }
-<<<<<<< HEAD
-=======
-        foreach ($ccEmailArray as $ccEmail) {
-            if ($ccEmail) {
-                $mh->cc($ccEmail);
-            }
-        }
->>>>>>> c4651b46a6667950971bcc8acf3e488e4ac79cb7
-
         foreach ($ccEmailArr as $ccEmail) {
             if ($ccEmail) {
                 $mh->cc($ccEmail);
