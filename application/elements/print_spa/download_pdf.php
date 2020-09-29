@@ -400,7 +400,6 @@ $date7 = date('M d, Y', $date7);
 
     $pdfname = 'Quotation EGL' . date('Y-m-d-h-i-s') . '.pdf';
     $pdf->Output($pdfname, 'D');
-    $pdf->Output($pdfname, );
     $pdf1->Output('application/quotation/' . $pdfname, 'F');
 
     if (file_exists('application/quotation/' . $pdfName)) {
