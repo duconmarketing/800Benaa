@@ -28,7 +28,7 @@ class MYPDF extends FPDI {
                 $this->setSourceFile(DIR_BASE . '/application/elements/print_spa/quote2.pdf');
                 $this->_tplIdx = $this->importPage(1);
             }
-            $this->useTemplate($this->_tplIdx, 0, 0);
+            $this->useTemplate($this->_tplIdx, -3, 0);
 //        }
 
     }
@@ -57,7 +57,7 @@ $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
 $pdf->SetFooterMargin(0);
 
 //set auto page breaks
-$pdf->SetAutoPageBreak(TRUE, 20);
+$pdf->SetAutoPageBreak(TRUE, 65);
 
 //set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -72,7 +72,7 @@ $pdf->setFontSubsetting(true);
 // dejavusans is a UTF-8 Unicode font, if you only need to
 // print standard ASCII chars, you can use core fonts like
 // helvetica or times to reduce file size.
-$pdf->SetFont('arial', '', 8, '', true);
+$pdf->SetFont('arial', '', 10, '', true);
 
 // Add a page
 // This method has several options, check the source code documentation for more information.
@@ -95,7 +95,7 @@ $pdf1->SetHeaderMargin(PDF_MARGIN_HEADER);
 $pdf1->SetFooterMargin(0);
 
 //set auto page breaks
-$pdf1->SetAutoPageBreak(TRUE, 20);
+$pdf1->SetAutoPageBreak(TRUE, 65);
 
 //set image scale factor
 $pdf1->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -110,7 +110,7 @@ $pdf1->setFontSubsetting(true);
 // dejavusans is a UTF-8 Unicode font, if you only need to
 // print standard ASCII chars, you can use core fonts like
 // helvetica or times to reduce file size.
-$pdf1->SetFont('arial', '', 8, '', true);
+$pdf1->SetFont('arial', '', 10, '', true);
 
 // Add a page
 // This method has several options, check the source code documentation for more information.
@@ -130,36 +130,36 @@ ob_start();
     .style3{ font-size: small; background-color: #99CCFF;}
 
     table.table1 {border-collapse:collapse; font-family: Arial, Helvetica, sans-serif; font-size: 10pt; width:100%;}
-    .table1header {font-size: 10pt;font-family: Arial, Helvetica, sans-serif;color: #FFFFFF;background-color: #ec7c05;padding:10px}
+    .table1header {font-size: 10pt;font-family: Arial, Helvetica, sans-serif;color: #FFFFFF;background-color: #ec7c05;text-align: center;}
     .table1footer {text-align:right;font-weight:bold;border:solid black 0px;}
     .table1col0 {text-align:left; width:25%; border-right:solid black 1px;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
     .table1col1 {text-align:left; width:15%;border-right:solid black 1px;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
     .table1col2,.table1col3,.table1col4{text-align:right; width:15%;border-right:solid black 1px;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
-    .table1col5{text-align:right;width:15%;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}   
-    .table1lastrow{border-top:solid black 1px;height:10px;}
+    .table1col5{text-align:right;width:15%;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
+    .table1lastrow{border-top:solid black 1px;height:10px;padding: 8px;}
     .credit_left{
         float:left;
         width:50%;
         margin-top:50px;
-    }	
+    }
     .credit_right{
         float:right;
         width:50%;
         margin-top:50px;
-    }		
+    }
     .credit_left label{
         font-size:9pt;
         margin:0;
         padding:0;
-    }	
+    }
     .credit_left p{
         margin:0;
         padding:0
-    }			
+    }
     .credit_right{
         float:right;
         width:100%;
-    }		
+    }
     .bor_bott{
         border-bottom:1px solid #000 !important;
         vertical-align:middle;
@@ -168,44 +168,53 @@ ob_start();
         float:left;
         width:100%;
         border-bottom:1px solid #000 !important;
-    }	
+    }
     .column{
         float:left !important;
         width:20% !important;
-    }	
-    .max{
-        width:15%;
     }
-    .min{
-        width:15%;
-    }		
-    .middle{
-        width:30%;
-    }	
+    .xmax{
+        width:40%;
+    }
+    .xmin{
+        width:6%;
+    }
+    .xmiddle{
+        width:14%;
+    }
     .xsmall{
-        width:10%;
-    }	
+        width:8%;
+    }
+    h3 {
+        display: block;
+        font-size: 1.17em;
+        font-weight: bold;
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    }
 </style>
 <?php
 $cssstyle = ob_get_contents();
 ob_clean();
 ob_start();
-//print_r($postValues);die('asas');
+
 $date = date("M d, Y");
 $date7 = strtotime($date);
 $date7 = strtotime("+6 day", $date7);
 $date7 = date('M d, Y', $date7);
 ?>
 
-<table>
+    <table width="100%" style="border-collapse: collapse;" cellspacing="0" cellpadding="0">
     <tr>
         <td valign="left" style="text-align:left">
-            <label>To:</label><br>
-            <label>Attn: Mr/Ms. <?php echo $postValues['firstname'] . ' ' . $postValues['lname'] ?>,</label><br>
-            <label>Contact Number: <?php echo $postValues['pnumber'] ?></label><br>
-            <label>Email: <?php echo $postValues['email'] ?></label><br>
-            <label>Company: <?php echo $postValues['cname'] ?></label><br>
-            <label>Address: <?php echo $postValues['address'] ?></label>
+            To:<br>
+            Attn: Mr/Ms. <?php echo $extdetail['fname'] . ' ' . $extdetail['lname'] ?>,<br>
+            Contact Number: <?php echo $extdetail['billing_phone'] ?><br>
+            Email: <?php echo $extdetail['email'] ?><br>
+            <!-- <label>Company: <?php echo $extdetail['cname'] ?></label><br> -->
+            Address: <?php echo $extdetail['address1'] ?>, <?php echo $extdetail['state_province'] ?>, <?php echo $extdetail['postal_code'] ?><br><?php echo $extdetail['country'] ?>
         </td>
         <td valign="right" style="text-align:right">
             <label>Date:</label>&nbsp;<?php echo $date; ?><br>
@@ -216,21 +225,21 @@ $date7 = date('M d, Y', $date7);
 </table>
 <br/>
 <?php if ($cart) { ?>
-    <table class="style1" style="margin-top:20px;">
+    <table width="100%" style="margin-top:10px;font-family: Arial, Helvetica, sans-serif; font-size: 10pt; width: 100%;" cellpadding="0" cellspacing="0">
         <tr>
-            <td class="table1header xsmall">
+            <td class="table1header xmin">
                 <?= t('No'); ?></td>
-            <td class="table1header middle">
+            <td class="table1header xmax">
                 <?= t('Product'); ?></td>
-            <td class="table1header max">
+            <td class="table1header xmiddle ">
                 <?= t('SKU Code'); ?></td>
             <td class="table1header xsmall">
                 <?= t('Qty'); ?></td>
             <td class="table1header xsmall">
                 <?= t('Unit'); ?></td>
-            <td class="table1header max" >
-                <?= t('Unit Price'); ?></td>            
-            <td class="table1header max" style="text-align:right;">
+            <td class="table1header xmiddle" >
+                <?= t('Unit Price'); ?></td>
+            <td class="table1header xmiddle" >
                 <?= t('Total'); ?></td>
         </tr>
         <tbody>
@@ -245,10 +254,10 @@ $date7 = date('M d, Y', $date7);
 
                     <tr nobr="true">
                         <?php $thumb = $product->getImageThumb(); ?>
-                        <td class="table1lastrow xsmall">
+                        <td class="table1lastrow xmin">
                             <?= $i; ?>
                         </td>
-                        <td class="table1lastrow middle">
+                        <td class="table1lastrow " style="text-align: left;">
 
                             <?= ucwords(strtolower($product->getName())) ?>
 
@@ -287,16 +296,16 @@ $date7 = date('M d, Y', $date7);
                                 </div>
                             <?php } ?>
                         </td>
-                        <td class="table1lastrow max">
-                            <?= $product->getSKU() ?> 
+                        <td class="table1lastrow " style="text-align: center;">
+                            <?= $product->getSKU() ?>
                         </td>
-                        <td class="table1lastrow xsmall">
+                        <td class="table1lastrow xsmall" style="text-align: center;">
                             <?= $qty ?>
                         </td>
-                        <td class="table1lastrow xsmall">
+                        <td class="table1lastrow " style="text-align: center;">
                             <?php if($product->getAttribute('unit_text')!=''){ echo $product->getAttribute('unit_text'); } else { echo "Pcs"; } ?>
                         </td>
-                        <td class="table1lastrow max">
+                        <td class="table1lastrow" style="text-align: right;">
                             <?php
                                 $price = '';
                             if (isset($cartItem['product']['customerPrice'])) {
@@ -317,8 +326,8 @@ $date7 = date('M d, Y', $date7);
                                 ?>
                             <?php } ?>
                         </td>
-                        
-                        <td style="text-align:right;" class="table1lastrow max">
+
+                        <td style="text-align:right;" class="table1lastrow ">
                             <?php
                             $pp = preg_replace("/[^0-9,.]/", "", $price);
                             $pp = str_replace(",", "", $pp);
@@ -337,55 +346,43 @@ $date7 = date('M d, Y', $date7);
             $total = $totals['total'];
             $subTotal = $totals['subTotal'];
             $shipping = 0;
-            ?>                    
+            ?>
         </tbody>
     </table>
-    
-    <?php ?>
     <?php
     $crecover = ob_get_contents();
     ob_clean();
     ?>
-    <table nobr="true" class="style1" style="margin-bottom:25px;">
+    <table border="0" width="100%" style="border-collapse: collapse;">
         <tbody>
             <tr>
                     <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Sub Total") ?>:</b></strong></td>
                     <td  align="right"><?php
-                        $subtotalval = number_format(array_sum($subtot), 2);
-                        echo 'AED ' . number_format(array_sum($subtot), 2);
+                        echo 'AED ' . number_format($extdetail['subTotal'], 2);
                         ?>
                     </td>
-                </tr>   
-
+                </tr>
                             <?php
-//                            if(array_sum($subtot)<500){
-//                                    $shipping = 50;
                             $shipping = 0;
                             ?>
                                     <tr>
                     <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Shipping Charge") ?>:</b></strong></td>
                     <td  align="right"><?php
-//                        echo 'AED ' . number_format($shipping, 2);
-                        echo 'Not Included';
+                        echo 'AED ' . number_format($extdetail['shippingTotal'], 2);
                         ?>
                     </td>
-                                    </tr>
-                            <?php
-//                            }	
-                            ?>
+                            </tr>
                             <tr>
                     <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("TAX (5%)") ?>:</b></strong></td>
                     <td  align="right"><?php
-                        $vatval = number_format((array_sum($subtot) + $shipping) * 0.05, 2);
-                        echo 'AED ' . number_format((array_sum($subtot) + $shipping) * 0.05, 2);
+                        echo 'AED ' . number_format($extdetail['taxTotal'], 2);
                         ?>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Grand Total") ?>:</b></strong></td>
                     <td  align="right"><?php
-                        $grandtotal = str_replace(',', '', $subtotalval) + str_replace(',', '', $vatval) + $shipping;
-                        echo 'AED ' . number_format($grandtotal, 2);
+                        echo 'AED ' . number_format($extdetail['total'], 2);
                         ?>
                     </td>
                 </tr>
@@ -397,38 +394,25 @@ $date7 = date('M d, Y', $date7);
 
     $pdf->writeHTML($cssstyle . $crecover);
     $pdf->writeHTML($totHtml);
-//    $pdf->Cell(0, 10, '', 0, 1, 'C', 0, '', 0);
-    //Cell(w, h = 0, txt = '', border = 0, ln = 0, align = '', fill = 0, link = nil, stretch = 0, ignore_min_height = false, calign = 'T', valign = 'M');
+
     $pdf1->writeHTML($cssstyle . $crecover);
     $pdf1->writeHTML($totHtml);
-//    $pdf1->Cell(0, 10, '', 0, 1, 'C', 0, '', 0);
-//    $pdf->SetY(-90);
-//    $pdf1->SetY(-90);
 
-//    $termsHtml = ob_get_contents();
-//    ob_clean();
-
-//    $pdf->writeHTML($termsHtml);
-//    $pdf1->writeHTML($termsHtml);
-    
-    $pdf->Image(DIR_BASE . '/application/elements/print_spa/sales-sign.png',13, '', 185, 0, 'PNG', '', 'L', true, 300, '', false, false, 0, false, false, FALSE);
-    $pdf1->Image(DIR_BASE . '/application/elements/print_spa/sales-sign.png',13, '', 185, 0, 'PNG', '', 'L', true, 300, '', false, false, 0, false, false, FALSE);               
-    
     $pdfname = 'Quotation EGL' . date('Y-m-d-h-i-s') . '.pdf';
-    //
     $pdf->Output($pdfname, 'D');
+    $pdf->Output($pdfname, );
     $pdf1->Output('application/quotation/' . $pdfname, 'F');
 
     if (file_exists('application/quotation/' . $pdfName)) {
         $mh = new MailService();
- //       $mh->to('marketing@duconind.com,sales@800benaa.com,maged@stemfze.com,akhalil@duconind.com');
- //       $mh->to('sabinonweb@gmail.com');
+        // $mh->to('marketing@duconind.com,sales@800benaa.com,maged@stemfze.com,akhalil@duconind.com');
+        // $mh->to('sabinonweb@gmail.com');
         $mh->to('toafsar@gmail.com');
         $mh->cc('afsarlko@gmail.com');
         $mh->from('lead@800benaa.com');
         $mail_body = '<html><body><b>Dear Mr. Maged,</b><br /><br />Please find the details of the Online Quotation, Kindly confirm the product availability for the same.<br /><br />Regards,<br />Ducon Team</body></html>';
         $mh->setBodyHTML($mail_body);
-       // $mh->setBody('Greetings From Ducon Industries FZCO, Hello Mr/Ms.' . $postValues['firstname'] . ' ' . $postValues['lname'] . ' Please find the attched Quotation with this email');
+        // $mh->setBody('Greetings From Ducon Industries FZCO, Hello Mr/Ms.' . $postValues['firstname'] . ' ' . $postValues['lname'] . ' Please find the attched Quotation with this email');
         $mh->setSubject(t('New Quotation Notification #EGL' . date('Y-m-d-h-i-s') . ''));
         $afiles = array();
         $pdffilepath = DIR_BASE . '/application/quotation/' . $pdfname;
@@ -436,8 +420,8 @@ $date7 = date('M d, Y', $date7);
         $afiles[0]['mime'] = 'application/pdf';
         $afiles[0]['name'] = basename($pdffilepath);
         $mh->addAttachments($afiles);
-        sleep(2);
-        $mh->sendMail();
-        //unlink(DIR_BASE . '/application/quotation/' . $pdfname);
+        // sleep(2);
+        // $mh->sendMail();
+        // unlink(DIR_BASE . '/application/quotation/' . $pdfname);
     }
 }

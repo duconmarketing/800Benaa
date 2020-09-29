@@ -119,6 +119,7 @@ class Checkout extends Controller
         $customer->setValue("billing_address", $address);
         Session::set('billing_address', $address);
         Session::set('community_store.smID', false);
+        Session::set('email', $customer->getEmail());
     }
 
     public function updateShipping($data)

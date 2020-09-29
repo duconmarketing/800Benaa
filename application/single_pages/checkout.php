@@ -317,7 +317,10 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                 <form class="store-checkout-form-group " id="store-checkout-form-group-payment" method="post"
                       action="<?= \URL::to('/checkout/submit') ?>">
 
-                    <div class="store-checkout-form-group-body">
+                    <div class="store-checkout-form-group-body ">
+                        <div style="text-align: right;"><button onclick=" window.open('cart/printquote','_blank')" type="button" style="background-color:#ec7c05;color:#fff;font-weight: bolder;" class="btn slide-toggle"><?= t("Get your online quote") ?></button><br /><br /> </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
                         <h2><?= t("Payment") ?></h2>
                         <?php
                         if ($enabledPaymentMethods) {
@@ -361,9 +364,6 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
 
                                 <input type="submit" class="store-btn-complete-order btn btn-default pull-right" id="store-btn-complete-order1" value="<?= $pm->getButtonLabel()? $pm->getButtonLabel() : t("Confirm Order") ?>">
 
-
-
-
                                 </div></div>
 
                             <?php    }
@@ -371,6 +371,8 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                             ?>
                             <p class="alert alert-warning"><?= t('There are currently no payment methods available to process your order.'); ?></p>
                         <?php } ?>
+                        </div>
+                    </div>
 
 </form>
 
@@ -512,8 +514,6 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
         }
     </style>
 <?php } ?>
-
-    
     <script type="text/javascript">
         function billingSubmit(){  
             $("#store-checkout-form-group-billing").submit();

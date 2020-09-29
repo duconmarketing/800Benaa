@@ -7,9 +7,11 @@ use Config;
 use Loader;
 use Page;
 use Core;
+use Session;
 use Concrete\Core\Mail\Service as MailService;
 use \Concrete\Package\CommunityStore\Src\CommunityStore\Product\Product as StoreProduct;
 use \Concrete\Package\CommunityStore\Src\CommunityStore\Cart\Cart as StoreCart;
+use \Concrete\Package\CommunityStore\Src\CommunityStore\Utilities\Calculator as StoreCartCalculator;
 use \Concrete\Package\CommunityStore\Src\CommunityStore\Discount\DiscountRule as StoreDiscountRule;
 use \Concrete\Package\CommunityStore\Src\CommunityStore\Discount\DiscountCode as StoreDiscountCode;
 use \Concrete\Package\CommunityStore\Src\CommunityStore\Utilities\Calculator as StoreCalculator;
@@ -202,6 +204,33 @@ class Cart extends PageController {
         Loader::Element('print_spa/download_pdf', array(
             'cart' => $cart, 'postValues' => $_POST));
     }
+
+    public function printquote() {
+
+        $arr_detail = array();
+        $arr_state = array("AD"=>"Abu Dhabi","AA"=>"Al Ain","AW"=>"Al Wagan/ Eastern Boundaries","RW"=>"Ruwais/ Western Boundaries","AJ"=>"Ajman","DXB"=>"Dubai","HT"=>"Hatta","FJ"=>"Fujairah","RK"=>"RAK","SHJ"=>"Sharjah","ADD"=>"Al Dhaid","AMD"=>"Al Madam","MH"=>"Maleha","SY"=>"Seyooh","UQ"=>"UAQ");
+        $cart = StoreCart::getCart();
+        $cartcal = StoreCartCalculator::getTotals();
+
+        $arr_detail['subTotal'] = $cartcal['subTotal'];
+        $arr_detail['shippingTotal'] = $cartcal['shippingTotal'];
+        $arr_detail['taxTotal'] = $cartcal['taxTotal'];
+        $arr_detail['total'] = $cartcal['total'];
+        $arr_detail['fname'] = Session::get('billing_first_name');
+        $arr_detail['lname'] = Session::get('billing_last_name');
+        $arr_detail['billing_phone'] = Session::get('billing_phone');
+        $arr_detail['email'] = Session::get('email');
+        $arr[] = Session::get('billing_address');
+        //print_r($arr);
+        $arr_detail['address1'] = $arr[0]['address1'];
+        $arr_detail['state_province'] = $arr_state[$arr[0]['state_province']];
+        $arr_detail['postal_code'] = $arr[0]['postal_code'];
+        $arr_detail['country'] = 'United Arab Emirates';
+
+        Loader::Element('print_spa/download_pdf', array(
+            'cart' => $cart, 'extdetail' => $arr_detail));
+    }
+
 
     public function ajaxSearch() {
         $data = $this->post();
