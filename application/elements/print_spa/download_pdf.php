@@ -180,10 +180,13 @@ ob_start();
         width:6%;
     }
     .xmiddle{
-        width:14%;
+        width:13%;
     }
     .xsmall{
         width:8%;
+    }
+    .xsmall2{
+        width:10%;
     }
     h3 {
         display: block;
@@ -206,15 +209,14 @@ $date7 = strtotime("+6 day", $date7);
 $date7 = date('M d, Y', $date7);
 ?>
 
-    <table width="100%" style="border-collapse: collapse;" cellspacing="0" cellpadding="0">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-        <td valign="left" style="text-align:left">
-            To:<br>
+        <td valign="left" style="text-align:left">To:<br>
             Attn: Mr/Ms. <?php echo $extdetail['fname'] . ' ' . $extdetail['lname'] ?>,<br>
             Contact Number: <?php echo $extdetail['billing_phone'] ?><br>
             Email: <?php echo $extdetail['email'] ?><br>
-            <!-- <label>Company: <?php echo $extdetail['cname'] ?></label><br> -->
-            Address: <?php echo $extdetail['address1'] ?>, <?php echo $extdetail['state_province'] ?>, <?php echo $extdetail['postal_code'] ?><br><?php echo $extdetail['country'] ?>
+            <!-- Company: <?php echo $extdetail['cname'] ?><br> -->Address: <?php echo $extdetail['address1'] ?>, <?php echo $extdetail['state_province'] ?>, <?php echo $extdetail['postal_code'] ?><br>
+            Country: <?php echo $extdetail['country'] ?>
         </td>
         <td valign="right" style="text-align:right">
             <label>Date:</label>&nbsp;<?php echo $date; ?><br>
@@ -235,7 +237,7 @@ $date7 = date('M d, Y', $date7);
                 <?= t('SKU Code'); ?></td>
             <td class="table1header xsmall">
                 <?= t('Qty'); ?></td>
-            <td class="table1header xsmall">
+            <td class="table1header xsmall2">
                 <?= t('Unit'); ?></td>
             <td class="table1header xmiddle" >
                 <?= t('Unit Price'); ?></td>

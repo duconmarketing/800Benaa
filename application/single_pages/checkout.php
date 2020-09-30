@@ -318,7 +318,7 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                       action="<?= \URL::to('/checkout/submit') ?>">
 
                     <div class="store-checkout-form-group-body ">
-                        <div style="text-align: right;"><button onclick=" window.open('cart/printquote','_blank')" type="button" style="background-color:#ec7c05;color:#fff;font-weight: bolder;" class="btn slide-toggle"><?= t("Get your online quote") ?></button><br /><br /> </div>
+                        <div style="text-align: right;"><button id="conf-button" type="button" style="background-color:#ec7c05;color:#fff;font-weight: bolder;" class="btn slide-toggle"><?= t("Get your online quote") ?></button><br /><br /> </div>
                         <div class="panel panel-default">
                             <div class="panel-body">
                         <h2><?= t("Payment") ?></h2>
@@ -519,8 +519,7 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
             $("#store-checkout-form-group-billing").submit();
         }
     </script>
-
-    <script>
+<script>
     $(document).ready(function() {
         $("input[name$='payment-method']").click(function() {
             var test1 = $(this).val();
@@ -540,6 +539,13 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
             }else{
                // $("#radio2").show();
                 $("#store-checkout-form-group-other-attributes").show();
+            }
+        });
+        $("#conf-button").click(function(){
+            if(confirm("Are you sure you want to submit this cart as a quotation?")) {
+                window.open('cart/printquote','_blank');
+            } else {
+                return false;
             }
         });
     });    
