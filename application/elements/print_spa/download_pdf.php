@@ -210,23 +210,24 @@ $date7 = date('M d, Y', $date7);
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td valign="left" style="text-align:left">To:<br>
+            <td valign="left" style="text-align:left"><b>To:</b><br>
                 Attn: Mr/Ms. <?php echo $extdetail['fname'] . ' ' . $extdetail['lname'] ?>,<br>
                 Contact Number: <?php echo $extdetail['billing_phone'] ?><br>
                 Email: <?php echo $extdetail['email'] ?><br>
                 <!-- Company: <?php echo $extdetail['cname'] ?><br> -->Address: <?php echo $extdetail['address1'] ?>, <?php echo $extdetail['state_province'] ?>, <?php echo $extdetail['postal_code'] ?><br>
                 Country: <?php echo $extdetail['country'] ?>
-                <?php if($extdetail['country']){?>
-                    <b>Company Details-</b><br>
+
+            </td>
+            <td valign="right" style="text-align:right">
+                Date:&nbsp;<?php echo $date; ?><br>
+                Expiry date:&nbsp;<?php echo $date7; ?><br>
+                Quotation Ref:&nbsp;<?php echo 'EGL' . date('Y-m-d H:i:s') ?><br>
+                <?php if(strlen($extdetail['comp_name']) > 1){?>
+                    <b>Company Details:</b><br>
                     Company Name: <?php echo $extdetail['comp_name'] ?><br>
                     Delivery Contact Person: <?php echo $extdetail['comp_dev_per'] ?><br>
                     Delivery Contact Number: <?php echo $extdetail['comp_dev_no'] ?>
                 <?php } ?>
-            </td>
-            <td valign="right" style="text-align:right">
-                <label>Date:</label>&nbsp;<?php echo $date; ?><br>
-                <label>Expiry date:</label>&nbsp;<?php echo $date7; ?><br>
-                <label>Quotation Ref:</label>&nbsp;<?php echo 'EGL' . date('Y-m-d H:i:s') ?>
             </td>
         </tr>
     </table>
