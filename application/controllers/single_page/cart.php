@@ -70,7 +70,7 @@ class Cart extends PageController {
 
             if ($this->post('action') == 'quote') {
                 //Check Quote mail exist
-                //if exist send Quote 
+                //if exist send Quote
                 self::sendQuote();
             }
 
@@ -220,12 +220,16 @@ class Cart extends PageController {
         $arr_detail['lname'] = Session::get('billing_last_name');
         $arr_detail['billing_phone'] = Session::get('billing_phone');
         $arr_detail['email'] = Session::get('email');
+
         $arr[] = Session::get('billing_address');
         //print_r($arr);
         $arr_detail['address1'] = $arr[0]['address1'];
         $arr_detail['state_province'] = $arr_state[$arr[0]['state_province']];
         $arr_detail['postal_code'] = $arr[0]['postal_code'];
         $arr_detail['country'] = 'United Arab Emirates';
+        $arr_detail['comp_name'] = $_POST['comp1'];
+        $arr_detail['comp_dev_per'] = $_POST['comp2'];
+        $arr_detail['comp_dev_no'] = $_POST['comp3'];
 
         Loader::Element('print_spa/download_pdf', array(
             'cart' => $cart, 'extdetail' => $arr_detail));
@@ -237,24 +241,17 @@ class Cart extends PageController {
         $key = $data['key'];
 
         $products = new StoreProductList();
+        $products->setSortBy($this->sortOrder);
 
         if ($key != '') {
             $products->setSearch($key);
         }
-        //---------------------------
-        $group = new Group();
-        $groupID = $group->getByName($key);;
-        if(!empty($groupID)){
-            $products->setGroupID($groupID->getGroupID());
-            $products->setSearch('');
-        }
-        //------------------------------
+
         $products->setItemsPerPage(12);
-//        $products->setSortBy($this->sortOrder);
-//        $products->setFeaturedOnly($this->showFeatured);
-//        $products->setSaleOnly($this->showSale);
-//        $products->setShowOutOfStock($this->showOutOfStock);
-//        $products->setGroupMatchAny($this->groupMatchAny);
+        $products->setFeaturedOnly($this->showFeatured);
+        $products->setSaleOnly($this->showSale);
+        $products->setShowOutOfStock($this->showOutOfStock);
+        $products->setGroupMatchAny($this->groupMatchAny);
         $paginator = $products->getPagination();
         $pagination = $paginator->renderDefaultView();
         $products = $paginator->getCurrentPageResults();
@@ -262,12 +259,12 @@ class Cart extends PageController {
         foreach ($products as $product) {
             $product->setInitialVariation();
         }
-                        
-        
+
+
         $prodSuggestion = array();
         $sortedGroupList = array();
         $categories = array();
-        
+
         if(!empty($products)){
             foreach ($products as $product) {
                 $prodSuggestion[] = implode(' ',array_slice(explode(' ', $product->getName()), 0, 3));
@@ -284,12 +281,12 @@ class Cart extends PageController {
                     $productgroupid=implode(',',$progroupval);
                 }
                 if($productgroupid){
-                    $checkgroup='WHERE gID IN('.$productgroupid.')'; 
-                //$sortedGroupList = Loader::db()->getAll("SELECT * FROM CommunityStoreGroups ORDER BY groupName");
+                    $checkgroup='WHERE gID IN('.$productgroupid.')';
+                    //$sortedGroupList = Loader::db()->getAll("SELECT * FROM CommunityStoreGroups ORDER BY groupName");
                     $sortedGroupList = Loader::db()->getAll("SELECT * FROM CommunityStoreGroups ".$checkgroup." ORDER BY groupName LIMIT 5");
-                }            
+                }
             }
-            
+
             $list = new \Concrete\Core\Page\PageList();
             $list->filterByPageTypeHandle('page');
             $list->filterByKeywords($key);
@@ -297,16 +294,16 @@ class Cart extends PageController {
             $list->filterByPath('/product');
             $list->filterByPageTemplate(\PageTemplate::getByHandle('product_list'));
             $catPag = $list->getPagination();
-            $catPag->setMaxPerPage(10);                                
+            $catPag->setMaxPerPage(10);
             $categories = $catPag->getCurrentPageResults();
         }
-        
+
         $prodSuggestion = array_unique($prodSuggestion);
         $html = $this->createSearchHTML($products, $categories, array_slice($prodSuggestion, -5), $sortedGroupList);
 
         $returndata = array('html' => $html);
         echo json_encode($returndata);
-        
+
 //        View::element("ajax_search", array('products' => $products, 'categories' => $categories, 'suggestion' => array_slice($prodSuggestion, -5), 'sortedGroupList' => $sortedGroupList));
         exit();
     }
@@ -324,7 +321,7 @@ class Cart extends PageController {
         if(count($categories) <= 0){
             $html .= '<div class="row"> No Categories </div>';
         }
-        
+
         $html .= '<p class="search-result text-uppercase" style="margin-top: 1.5em;">Brands</p>';
         foreach($sortedGroupList as $brand){
             $html .= '<div class="row" style="text-align: left;padding-left: 25px; overflow:hidden;">';
@@ -335,7 +332,7 @@ class Cart extends PageController {
         if(count($sortedGroupList) <= 0){
             $html .= '<div class="row"> No Brands </div>';
         }
-        
+
         $html .= '<p class="search-result text-uppercase" style="margin-top: 1.5em;">SUGGESTIONS</p>';
         foreach($suggestion as $cat){
             $html .= '<div class="row" style="text-align: left;padding-left: 25px; overflow:hidden;">';
@@ -345,7 +342,7 @@ class Cart extends PageController {
         }
         if(count($suggestion) <= 0){
             $html .= '<div class="row"> No Suggestions </div>';
-        }        
+        }
         $html .= '</div>';
 
         $html .= '<div class="col-md-9">';
@@ -371,12 +368,12 @@ class Cart extends PageController {
                     $html .= $product->getFormattedPrice() . '<span style="font-size: 14px;color: #000;text-transform: none;font-weight:normal;"> Ex VAT</span>';
                 }
                 $html .= '</h6>';
-                
+
                 $html .= '</div>';
             }
             $html .= '<div class="row mb-3"><div class="col-md-12"><button class="btn btn-primary" style="background-color: #ec7c05;border-color: #ec7c05;margin: 10px;" type="submit">View All results...</button></div></div>';
             $html .= '</div>';
-            $html .= '</div>';            
+            $html .= '</div>';
         } else {
             $html .= '<h4 style="padding-top: 2%;">No products were found !!! </h4></div></div>';
         }

@@ -487,6 +487,13 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
                     <small style="font-size:11px;font-size: 16px; text-align: left; float: left;">*Orders below AED 500, Delivery charge <strong> AED 50</strong> is applied. </small>
                 </p>-->
             </div>
+                <div>
+                    <form method="post" id="formcomp" action="cart/printquote" target="_blank" >
+                        <input type="hidden" name="comp1" id="comp1" value="" />
+                        <input type="hidden" name="comp2" id="comp2" value="" />
+                        <input type="hidden" name="comp3" id="comp3" value="" />
+                    </form>
+                </div>
         </div>
             
 
@@ -543,7 +550,8 @@ use \Concrete\Package\CommunityStore\Src\Attribute\Key\StoreOrderKey as StoreOrd
         });
         $("#conf-button").click(function(){
             if(confirm("Are you sure you want to submit this cart as a quotation?")) {
-                window.open('cart/printquote','_blank');
+                $("#formcomp").submit();
+               // window.open('cart/printquote','_blank');
             } else {
                 return false;
             }

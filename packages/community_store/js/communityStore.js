@@ -421,11 +421,14 @@ $(document).ready(function () {
             return false;
         }
         var check = '';
+        var compid = 1;
         $("#store-checkout-form-group-other-attributes .row").each(function(index, el) {
             var akID = $(el).data("akid");
             var value = $(el).find(".form-control").val();
             $('.store-summary-order-choices-' + akID).html(value.replace(/[\n\r]/g, '<br>'));
             $('#store-checkout-form-group-payment').append('<input name="akID[' + akID + '][value]" type="hidden" value="' + value + '">');
+            $('#comp'+compid).val(value);
+            compid++;
             if(value !== ''){
                 check = value;
             }

@@ -1,7 +1,6 @@
 <?php
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
-use \Concrete\Package\CommunityStore\Src\CommunityStore\Product\Product as StoreProduct;
 use \Concrete\Package\CommunityStore\Src\CommunityStore\Utilities\Price as StorePrice;
 use \Concrete\Package\CommunityStore\Src\CommunityStore\Product\ProductOption\ProductOption as StoreProductOption;
 use \Concrete\Package\CommunityStore\Src\CommunityStore\Product\ProductOption\ProductOptionItem as StoreProductOptionItem;
@@ -24,11 +23,11 @@ class MYPDF extends FPDI {
     //Page header
     public function Header() {
 //        if ($this->page == 1 || $this->page == 2) {
-            if (is_null($this->_tplIdx)) {
-                $this->setSourceFile(DIR_BASE . '/application/elements/print_spa/quote2.pdf');
-                $this->_tplIdx = $this->importPage(1);
-            }
-            $this->useTemplate($this->_tplIdx, -3, 0);
+        if (is_null($this->_tplIdx)) {
+            $this->setSourceFile(DIR_BASE . '/application/elements/print_spa/quote2.pdf');
+            $this->_tplIdx = $this->importPage(1);
+        }
+        $this->useTemplate($this->_tplIdx, -3, 0);
 //        }
 
     }
@@ -124,80 +123,80 @@ $pdf1->AliasNbPages();
 //$content
 ob_start();
 ?>
-<style type="text/css">
-    .style1{font-family: Arial, Helvetica, sans-serif;font-size:10pt;width: 100%;}
-    .style2{font-family: Arial, Helvetica, sans-serif;}
-    .style3{ font-size: small; background-color: #99CCFF;}
+    <style type="text/css">
+        .style1{font-family: Arial, Helvetica, sans-serif;font-size:10pt;width: 100%;}
+        .style2{font-family: Arial, Helvetica, sans-serif;}
+        .style3{ font-size: small; background-color: #99CCFF;}
 
-    table.table1 {border-collapse:collapse; font-family: Arial, Helvetica, sans-serif; font-size: 10pt; width:100%;}
-    .table1header {font-size: 10pt;font-family: Arial, Helvetica, sans-serif;color: #FFFFFF;background-color: #ec7c05;text-align: center;}
-    .table1footer {text-align:right;font-weight:bold;border:solid black 0px;}
-    .table1col0 {text-align:left; width:25%; border-right:solid black 1px;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
-    .table1col1 {text-align:left; width:15%;border-right:solid black 1px;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
-    .table1col2,.table1col3,.table1col4{text-align:right; width:15%;border-right:solid black 1px;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
-    .table1col5{text-align:right;width:15%;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
-    .table1lastrow{border-top:solid black 1px;height:10px;padding: 8px;}
-    .credit_left{
-        float:left;
-        width:50%;
-        margin-top:50px;
-    }
-    .credit_right{
-        float:right;
-        width:50%;
-        margin-top:50px;
-    }
-    .credit_left label{
-        font-size:9pt;
-        margin:0;
-        padding:0;
-    }
-    .credit_left p{
-        margin:0;
-        padding:0
-    }
-    .credit_right{
-        float:right;
-        width:100%;
-    }
-    .bor_bott{
-        border-bottom:1px solid #000 !important;
-        vertical-align:middle;
-    }
-    .row{
-        float:left;
-        width:100%;
-        border-bottom:1px solid #000 !important;
-    }
-    .column{
-        float:left !important;
-        width:20% !important;
-    }
-    .xmax{
-        width:40%;
-    }
-    .xmin{
-        width:6%;
-    }
-    .xmiddle{
-        width:13%;
-    }
-    .xsmall{
-        width:8%;
-    }
-    .xsmall2{
-        width:10%;
-    }
-    h3 {
-        display: block;
-        font-size: 1.17em;
-        font-weight: bold;
-        margin-block-start: 0em;
-        margin-block-end: 0em;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
-    }
-</style>
+        table.table1 {border-collapse:collapse; font-family: Arial, Helvetica, sans-serif; font-size: 10pt; width:100%;}
+        .table1header {font-size: 10pt;font-family: Arial, Helvetica, sans-serif;color: #FFFFFF;background-color: #ec7c05;text-align: center;}
+        .table1footer {text-align:right;font-weight:bold;border:solid black 0px;}
+        .table1col0 {text-align:left; width:25%; border-right:solid black 1px;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
+        .table1col1 {text-align:left; width:15%;border-right:solid black 1px;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
+        .table1col2,.table1col3,.table1col4{text-align:right; width:15%;border-right:solid black 1px;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
+        .table1col5{text-align:right;width:15%;font-family: Arial, Helvetica, sans-serif; font-size: 9pt;}
+        .table1lastrow{border-top:solid black 1px;height:10px;padding: 8px;}
+        .credit_left{
+            float:left;
+            width:50%;
+            margin-top:50px;
+        }
+        .credit_right{
+            float:right;
+            width:50%;
+            margin-top:50px;
+        }
+        .credit_left label{
+            font-size:9pt;
+            margin:0;
+            padding:0;
+        }
+        .credit_left p{
+            margin:0;
+            padding:0
+        }
+        .credit_right{
+            float:right;
+            width:100%;
+        }
+        .bor_bott{
+            border-bottom:1px solid #000 !important;
+            vertical-align:middle;
+        }
+        .row{
+            float:left;
+            width:100%;
+            border-bottom:1px solid #000 !important;
+        }
+        .column{
+            float:left !important;
+            width:20% !important;
+        }
+        .xmax{
+            width:40%;
+        }
+        .xmin{
+            width:6%;
+        }
+        .xmiddle{
+            width:13%;
+        }
+        .xsmall{
+            width:8%;
+        }
+        .xsmall2{
+            width:10%;
+        }
+        h3 {
+            display: block;
+            font-size: 1.17em;
+            font-weight: bold;
+            margin-block-start: 0em;
+            margin-block-end: 0em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+    </style>
 <?php
 $cssstyle = ob_get_contents();
 ob_clean();
@@ -210,22 +209,28 @@ $date7 = date('M d, Y', $date7);
 ?>
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr>
-        <td valign="left" style="text-align:left">To:<br>
-            Attn: Mr/Ms. <?php echo $extdetail['fname'] . ' ' . $extdetail['lname'] ?>,<br>
-            Contact Number: <?php echo $extdetail['billing_phone'] ?><br>
-            Email: <?php echo $extdetail['email'] ?><br>
-            <!-- Company: <?php echo $extdetail['cname'] ?><br> -->Address: <?php echo $extdetail['address1'] ?>, <?php echo $extdetail['state_province'] ?>, <?php echo $extdetail['postal_code'] ?><br>
-            Country: <?php echo $extdetail['country'] ?>
-        </td>
-        <td valign="right" style="text-align:right">
-            <label>Date:</label>&nbsp;<?php echo $date; ?><br>
-            <label>Expiry date:</label>&nbsp;<?php echo $date7; ?><br>
-            <label>Quotation Ref:</label>&nbsp;<?php echo 'EGL' . date('Y-m-d H:i:s') ?>
-        </td>
-    </tr>
-</table>
-<br/>
+        <tr>
+            <td valign="left" style="text-align:left">To:<br>
+                Attn: Mr/Ms. <?php echo $extdetail['fname'] . ' ' . $extdetail['lname'] ?>,<br>
+                Contact Number: <?php echo $extdetail['billing_phone'] ?><br>
+                Email: <?php echo $extdetail['email'] ?><br>
+                <!-- Company: <?php echo $extdetail['cname'] ?><br> -->Address: <?php echo $extdetail['address1'] ?>, <?php echo $extdetail['state_province'] ?>, <?php echo $extdetail['postal_code'] ?><br>
+                Country: <?php echo $extdetail['country'] ?>
+                <?php if($extdetail['country']){?>
+                    <b>Company Details-</b><br>
+                    Company Name: <?php echo $extdetail['comp_name'] ?><br>
+                    Delivery Contact Person: <?php echo $extdetail['comp_dev_per'] ?><br>
+                    Delivery Contact Number: <?php echo $extdetail['comp_dev_no'] ?>
+                <?php } ?>
+            </td>
+            <td valign="right" style="text-align:right">
+                <label>Date:</label>&nbsp;<?php echo $date; ?><br>
+                <label>Expiry date:</label>&nbsp;<?php echo $date7; ?><br>
+                <label>Quotation Ref:</label>&nbsp;<?php echo 'EGL' . date('Y-m-d H:i:s') ?>
+            </td>
+        </tr>
+    </table>
+    <br/>
 <?php if ($cart) { ?>
     <table width="100%" style="margin-top:10px;font-family: Arial, Helvetica, sans-serif; font-size: 10pt; width: 100%;" cellpadding="0" cellspacing="0">
         <tr>
@@ -245,110 +250,110 @@ $date7 = date('M d, Y', $date7);
                 <?= t('Total'); ?></td>
         </tr>
         <tbody>
-            <?php
-            $i = 1;
-            foreach ($cart as $k => $cartItem) {
+        <?php
+        $i = 1;
+        foreach ($cart as $k => $cartItem) {
 
-                $qty = $cartItem['product']['qty'];
-                $product = $cartItem['product']['object'];
-                if (is_object($product)) {
-                    ?>
+            $qty = $cartItem['product']['qty'];
+            $product = $cartItem['product']['object'];
+            if (is_object($product)) {
+                ?>
 
-                    <tr nobr="true">
-                        <?php $thumb = $product->getImageThumb(); ?>
-                        <td class="table1lastrow xmin">
-                            <?= $i; ?>
-                        </td>
-                        <td class="table1lastrow " style="text-align: left;">
+                <tr nobr="true">
+                    <?php $thumb = $product->getImageThumb(); ?>
+                    <td class="table1lastrow xmin">
+                        <?= $i; ?>
+                    </td>
+                    <td class="table1lastrow " style="text-align: left;">
 
-                            <?= ucwords(strtolower($product->getName())) ?>
+                        <?= ucwords(strtolower($product->getName())) ?>
 
-                            <?php if ($cartItem['productAttributes']) { ?>
-                                <div class="store-cart-list-item-attributes">
-                                    <?php
-                                    foreach ($cartItem['productAttributes'] as $groupID => $valID) {
-
-                                        if (substr($groupID, 0, 2) == 'po') {
-                                            $groupID = str_replace("po", "", $groupID);
-                                            $optionvalue = StoreProductOptionItem::getByID($valID);
-
-                                            if ($optionvalue) {
-                                                $optionvalue = $optionvalue->getName();
-                                            }
-                                        } elseif (substr($groupID, 0, 2) == 'pt') {
-                                            $groupID = str_replace("pt", "", $groupID);
-                                            $optionvalue = $valID;
-                                        } elseif (substr($groupID, 0, 2) == 'pa') {
-                                            $groupID = str_replace("pa", "", $groupID);
-                                            $optionvalue = $valID;
-                                        } elseif (substr($groupID, 0, 2) == 'ph') {
-                                            $groupID = str_replace("ph", "", $groupID);
-                                            $optionvalue = $valID;
-                                        }
-
-                                        $optiongroup = StoreProductOption::getByID($groupID);
-                                        ?>
-                                        <?php if ($optionvalue) { ?>
-                                            <div class="store-cart-list-item-attribute">
-                                                <span class="store-cart-list-item-attribute-label"><?= ($optiongroup ? h($optiongroup->getName()) : '') ?>:</span>
-                                                <span class="store-cart-list-item-attribute-value"><?= ($optionvalue ? h($optionvalue) : '') ?></span>
-                                            </div>
-                                        <?php } ?>
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
-                        </td>
-                        <td class="table1lastrow " style="text-align: center;">
-                            <?= $product->getSKU() ?>
-                        </td>
-                        <td class="table1lastrow xsmall" style="text-align: center;">
-                            <?= $qty ?>
-                        </td>
-                        <td class="table1lastrow " style="text-align: center;">
-                            <?php if($product->getAttribute('unit_text')!=''){ echo $product->getAttribute('unit_text'); } else { echo "Pcs"; } ?>
-                        </td>
-                        <td class="table1lastrow" style="text-align: right;">
-                            <?php
-                                $price = '';
-                            if (isset($cartItem['product']['customerPrice'])) {
-                                $price = StorePrice::format($cartItem['product']['customerPrice']);
-                                ?>
-                                <?= ltrim($price,"AED"); ?>
-                            <?php } else { ?>
+                        <?php if ($cartItem['productAttributes']) { ?>
+                            <div class="store-cart-list-item-attributes">
                                 <?php
-                                $salePrice = $product->getSalePrice();
-                                if (isset($salePrice) && $salePrice != "") {
+                                foreach ($cartItem['productAttributes'] as $groupID => $valID) {
 
-                                    $price = StorePrice::format($salePrice);
-                                    echo '<span class="sale-price">' . ltrim($price,"AED") . '</span>';
-                                } else {
-                                    $price = StorePrice::format($product->getActivePrice());
-                                    echo ltrim($price,"AED");
-                                }
-                                ?>
-                            <?php } ?>
-                        </td>
+                                    if (substr($groupID, 0, 2) == 'po') {
+                                        $groupID = str_replace("po", "", $groupID);
+                                        $optionvalue = StoreProductOptionItem::getByID($valID);
 
-                        <td style="text-align:right;" class="table1lastrow ">
-                            <?php
-                            $pp = preg_replace("/[^0-9,.]/", "", $price);
-                            $pp = str_replace(",", "", $pp);
-                            echo number_format(($pp * $qty), 2);
-                            $subtot[] = $pp * $qty;
-                            //echo number_format(str_replace(',','',$pp) * $qty);
+                                        if ($optionvalue) {
+                                            $optionvalue = $optionvalue->getName();
+                                        }
+                                    } elseif (substr($groupID, 0, 2) == 'pt') {
+                                        $groupID = str_replace("pt", "", $groupID);
+                                        $optionvalue = $valID;
+                                    } elseif (substr($groupID, 0, 2) == 'pa') {
+                                        $groupID = str_replace("pa", "", $groupID);
+                                        $optionvalue = $valID;
+                                    } elseif (substr($groupID, 0, 2) == 'ph') {
+                                        $groupID = str_replace("ph", "", $groupID);
+                                        $optionvalue = $valID;
+                                    }
+
+                                    $optiongroup = StoreProductOption::getByID($groupID);
+                                    ?>
+                                    <?php if ($optionvalue) { ?>
+                                        <div class="store-cart-list-item-attribute">
+                                            <span class="store-cart-list-item-attribute-label"><?= ($optiongroup ? h($optiongroup->getName()) : '') ?>:</span>
+                                            <span class="store-cart-list-item-attribute-value"><?= ($optionvalue ? h($optionvalue) : '') ?></span>
+                                        </div>
+                                    <?php } ?>
+                                <?php } ?>
+                            </div>
+                        <?php } ?>
+                    </td>
+                    <td class="table1lastrow " style="text-align: center;">
+                        <?= $product->getSKU() ?>
+                    </td>
+                    <td class="table1lastrow xsmall" style="text-align: center;">
+                        <?= $qty ?>
+                    </td>
+                    <td class="table1lastrow " style="text-align: center;">
+                        <?php if($product->getAttribute('unit_text')!=''){ echo $product->getAttribute('unit_text'); } else { echo "Pcs"; } ?>
+                    </td>
+                    <td class="table1lastrow" style="text-align: right;">
+                        <?php
+                        $price = '';
+                        if (isset($cartItem['product']['customerPrice'])) {
+                            $price = StorePrice::format($cartItem['product']['customerPrice']);
                             ?>
-                        </td>
-                    </tr>
-                    <?php
-                }
-                $i++;
-            }
+                            <?= ltrim($price,"AED"); ?>
+                        <?php } else { ?>
+                            <?php
+                            $salePrice = $product->getSalePrice();
+                            if (isset($salePrice) && $salePrice != "") {
 
-            $totals = StoreCalculator::getTotals();
-            $total = $totals['total'];
-            $subTotal = $totals['subTotal'];
-            $shipping = 0;
-            ?>
+                                $price = StorePrice::format($salePrice);
+                                echo '<span class="sale-price">' . ltrim($price,"AED") . '</span>';
+                            } else {
+                                $price = StorePrice::format($product->getActivePrice());
+                                echo ltrim($price,"AED");
+                            }
+                            ?>
+                        <?php } ?>
+                    </td>
+
+                    <td style="text-align:right;" class="table1lastrow ">
+                        <?php
+                        $pp = preg_replace("/[^0-9,.]/", "", $price);
+                        $pp = str_replace(",", "", $pp);
+                        echo number_format(($pp * $qty), 2);
+                        $subtot[] = $pp * $qty;
+                        //echo number_format(str_replace(',','',$pp) * $qty);
+                        ?>
+                    </td>
+                </tr>
+                <?php
+            }
+            $i++;
+        }
+
+        $totals = StoreCalculator::getTotals();
+        $total = $totals['total'];
+        $subTotal = $totals['subTotal'];
+        $shipping = 0;
+        ?>
         </tbody>
     </table>
     <?php
@@ -357,40 +362,40 @@ $date7 = date('M d, Y', $date7);
     ?>
     <table border="0" width="100%" style="border-collapse: collapse;">
         <tbody>
-            <tr>
-                    <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Sub Total") ?>:</b></strong></td>
-                    <td  align="right"><?php
-                        echo 'AED ' . number_format($extdetail['subTotal'], 2);
-                        ?>
-                    </td>
-                </tr>
-                            <?php
-                            $shipping = 0;
-                            ?>
-                                    <tr>
-                    <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Shipping Charge") ?>:</b></strong></td>
-                    <td  align="right"><?php
-                        echo 'AED ' . number_format($extdetail['shippingTotal'], 2);
-                        ?>
-                    </td>
-                            </tr>
-                            <tr>
-                    <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("TAX (5%)") ?>:</b></strong></td>
-                    <td  align="right"><?php
-                        echo 'AED ' . number_format($extdetail['taxTotal'], 2);
-                        ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Grand Total") ?>:</b></strong></td>
-                    <td  align="right"><?php
-                        echo 'AED ' . number_format($extdetail['total'], 2);
-                        ?>
-                    </td>
-                </tr>
+        <tr>
+            <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Sub Total") ?>:</b></strong></td>
+            <td  align="right"><?php
+                echo 'AED ' . number_format($extdetail['subTotal'], 2);
+                ?>
+            </td>
+        </tr>
+        <?php
+        $shipping = 0;
+        ?>
+        <tr>
+            <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Shipping Charge") ?>:</b></strong></td>
+            <td  align="right"><?php
+                echo 'AED ' . number_format($extdetail['shippingTotal'], 2);
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("TAX (5%)") ?>:</b></strong></td>
+            <td  align="right"><?php
+                echo 'AED ' . number_format($extdetail['taxTotal'], 2);
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Grand Total") ?>:</b></strong></td>
+            <td  align="right"><?php
+                echo 'AED ' . number_format($extdetail['total'], 2);
+                ?>
+            </td>
+        </tr>
         </tbody>
     </table>
-<?php
+    <?php
     $totHtml = ob_get_contents();
     ob_clean();
 
@@ -421,8 +426,8 @@ $date7 = date('M d, Y', $date7);
         $afiles[0]['mime'] = 'application/pdf';
         $afiles[0]['name'] = basename($pdffilepath);
         $mh->addAttachments($afiles);
-        // sleep(2);
-        // $mh->sendMail();
-        // unlink(DIR_BASE . '/application/quotation/' . $pdfname);
+        sleep(1);
+        $mh->sendMail();
+        unlink(DIR_BASE . '/application/quotation/' . $pdfname);
     }
 }
