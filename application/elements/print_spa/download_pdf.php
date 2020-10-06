@@ -56,7 +56,7 @@ $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
 $pdf->SetFooterMargin(0);
 
 //set auto page breaks
-$pdf->SetAutoPageBreak(TRUE, 65);
+$pdf->SetAutoPageBreak(TRUE, 75);
 
 //set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -94,7 +94,7 @@ $pdf1->SetHeaderMargin(PDF_MARGIN_HEADER);
 $pdf1->SetFooterMargin(0);
 
 //set auto page breaks
-$pdf1->SetAutoPageBreak(TRUE, 65);
+$pdf1->SetAutoPageBreak(TRUE, 75);
 
 //set image scale factor
 $pdf1->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -364,8 +364,8 @@ $date7 = date('M d, Y', $date7);
     <table border="0" width="100%" style="border-collapse: collapse;">
         <tbody>
         <tr>
-            <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Sub Total") ?>:</b></strong></td>
-            <td  align="right"><?php
+            <td align="right" width="80%" ><strong class="cart-grand-total-label"><b><?= t("Sub Total") ?>:</b></strong></td>
+            <td align="right" width="20%"><?php
                 echo 'AED ' . number_format($extdetail['subTotal'], 2);
                 ?>
             </td>
@@ -374,22 +374,22 @@ $date7 = date('M d, Y', $date7);
         $shipping = 0;
         ?>
         <tr>
-            <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Shipping Charge") ?>:</b></strong></td>
-            <td  align="right"><?php
+            <td align="right" ><strong class="cart-grand-total-label"><b><?= t("Shipping Charge") ?>:</b></strong></td>
+            <td align="right"><?php
                 echo 'AED ' . number_format($extdetail['shippingTotal'], 2);
                 ?>
             </td>
         </tr>
         <tr>
-            <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("TAX (5%)") ?>:</b></strong></td>
-            <td  align="right"><?php
+            <td align="right" ><strong class="cart-grand-total-label"><b><?= t("TAX (5%)") ?>:</b></strong></td>
+            <td align="right"><?php
                 echo 'AED ' . number_format($extdetail['taxTotal'], 2);
                 ?>
             </td>
         </tr>
         <tr>
-            <td colspan="6" align="right" ><strong class="cart-grand-total-label"><b><?= t("Grand Total") ?>:</b></strong></td>
-            <td  align="right"><?php
+            <td align="right" ><strong class="cart-grand-total-label"><b><?= t("Grand Total") ?>:</b></strong></td>
+            <td align="right"><?php
                 echo 'AED ' . number_format($extdetail['total'], 2);
                 ?>
             </td>

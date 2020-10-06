@@ -212,7 +212,7 @@ global $u;
             <!-- <div class="box-inner">Lorem ipsum dolor sit amet... </div>-->
         </div>
 
-     <1--   <button type="button" style="background-color:#ec7c05;color:#fff;font-weight: bolder;" class="btn slide-toggle"><?= t("Get your online quote") ?></button> -->
+     <!--   <button type="button" style="background-color:#ec7c05;color:#fff;font-weight: bolder;" class="btn slide-toggle"><?= t("Get your online quote") ?></button> -->
         <!--    Hidden form for deleting-->
         <form method="post" id="deleteform">
             <input type="hidden" name="instance" value=""/>
