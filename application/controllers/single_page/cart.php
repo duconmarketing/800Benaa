@@ -380,4 +380,37 @@ class Cart extends PageController {
         return $html;
     }
 
+    public function submitContactForm(){
+        $data = $this->post();
+        foreach ( $data as $key => $value) {
+            $post_items[] = $key . '=' . $value;
+        }
+        $post_string = implode ('&', $post_items);
+        $header = '';
+        $res = $this->curlRequest('POST', 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', $header, $post_string);
+        if($res){
+            echo json_encode(array('result' => 'true'));
+        }else{
+            echo json_encode(array('result' => 'false'));
+        }  
+        exit();
+
+    }
+
+    public function curlRequest($type, $url, $headers, $data = "") {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        if($headers !== ''){
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        }        
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        if ($type == "POST") {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        }
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+        return $server_output;
+    }
 }
