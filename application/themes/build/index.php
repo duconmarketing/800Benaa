@@ -89,7 +89,7 @@ $(window).load(function () {
                             </div>                                                            
                             <div>
                                 <a href="<?= \URL::to('product/supply-replacement') ?>">
-                                    <img src="<?= $this->getThemePath()?>/images/supply-and-replace.jpg" class="img-responsive" />
+                                    <img src="<?= $this->getThemePath()?>/images/services.jpg" class="img-responsive" />
                                 </a>                                                              
                             </div> 
     					</div>

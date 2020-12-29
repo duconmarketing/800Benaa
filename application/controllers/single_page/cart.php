@@ -397,6 +397,34 @@ class Cart extends PageController {
 
     }
 
+    public function exportProductDetails(){
+        $products = new StoreProductList();
+        $products->setItemsPerPage(2500);
+        $products->setShowOutOfStock(1);
+//        $products->setActiveOnly(1);
+        $paginator = $products->getPagination();
+//        $pagination = $paginator->renderDefaultView();
+        $res = $paginator->getCurrentPageResults();
+
+        $exportArray = array();
+
+        foreach ($res as $key => $product) {
+            $exportArray[$key]['Articele Code'] = $product->getSKU();
+            $exportArray[$key]['Name'] = $product->getName();
+            $exportArray[$key]['Price'] = $product->getPrice();
+            $exportArray[$key]['Unit'] = $product->getAttribute('unit_text');
+        }
+        echo count($exportArray);
+        ob_start();
+        $fileH = fopen('application/controllers/benaaExport.csv', 'w');
+        fputcsv($fileH, array_keys(reset($exportArray)));
+        foreach ($exportArray as $row) {
+            fputcsv($fileH, $row);
+        }
+        fclose($fileH);
+        return ob_get_clean();
+    }
+
     public function curlRequest($type, $url, $headers, $data = "") {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

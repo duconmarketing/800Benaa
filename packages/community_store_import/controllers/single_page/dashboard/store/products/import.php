@@ -271,7 +271,8 @@ class Import extends DashboardPageController
     private function update($p, $row)
     {
         if ($row['psku']) $p->setSKU($row['psku']);
-      if ($row['pname']) $p->setName($row['pname']);
+        if ($row['psku2']) $p->setSKU($row['psku2']);
+//        if ($row['pname']) $p->setName($row['pname']);
 //        if ($row['pdesc']) $p->setDescription($row['pdesc']);
 ////        if ($row['pdetail']) $p->setDetail($row['pdetail']);
 //        if ($row['pfeatured']) $p->setIsFeatured($row['pfeatured']);

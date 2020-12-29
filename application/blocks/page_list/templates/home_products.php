@@ -108,7 +108,7 @@ $dh = Core::make('helper/date'); /* @var $dh \Concrete\Core\Localization\Service
               foreach ($childs as $child){
                   if($child->getNumChildren() > 0){
 			  ?>
-        <li><a style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;" href="<?php echo $nh->getLinkToCollection($child)?>" title="<?php echo $child->getCollectionName();?>"><?php echo $child->getCollectionName();?></a></li>
+        <li><a style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;" href="<?php echo $nh->getLinkToCollection($child)?>" title="<?php echo $child->getCollectionName();?>"><?php echo ucwords(strtolower($child->getCollectionName()));?></a></li>
       <?php
 			  if($i==3){
 				 break;
